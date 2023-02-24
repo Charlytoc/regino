@@ -1,0 +1,8 @@
+/* 
+   Important! The component class name always have to be lowercase 
+   and it has to match the js and css file names 
+*/
+.home{
+   background: rgb(255, 0, 0);
+   width: 100vw;
+}

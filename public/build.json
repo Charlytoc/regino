@@ -1,0 +1,12 @@
+{
+  "pages": [
+    {
+      "name": "home",
+      "hasStyles": true
+    },
+    {
+      "name": "login",
+      "hasStyles": true
+    }
+  ]
+}
