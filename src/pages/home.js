@@ -1,20 +1,23 @@
 
-const fetchPrompts = () => {
-    return [{
-        name: "Prompt 1"
-    }]
-}
 
+// Must be called html
+let html = () => {
+    const [todos, setTodos] = useState(['make the bed', 'eat lunch']);
+    const [newTodo, setNewTodo] = useState("");
 
-// Always lowercase!
-let html = async () => {
-    const data = useState("setData", fetchPrompts());
+    actions.addTodo = (e) => setTodos([ ...todos, newTodo]);
+    actions.handleInputChange = (e) => setNewTodo(e.target.value);
 
     return `<div class="home">
         Hello world from home <a href="login.html"> take me to login</a>
-        ${data.map(p => `<li>${p.name}</li>`)}
-        <button onClick="setData(['hola'])">Add new prompt</button>
+        
+        <h3>Here are some todos</h3>
+        <div>
+            ${todos.map(t => `<li>${t}</li>`)}
+        </div>
+        <input type="text" value="${newTodo}" onchange="actions.handleInputChange(event)" />
+        <button onclick="actions.addTodo(event)">Add new prompt</button>
     </div>`;
 }
 
-window.onload = render();
+window.html

@@ -1,22 +1,27 @@
-window.stateValues = {}
+window.stateValues = []
+let currentRefCount = 0;
+window.actions = {};
 
-const render = async () => {
-    console.log("Calling render, state values are ", stateValues)
-    document.querySelector('#root').innerHTML = await html();
+const render = () => {
+    console.log("Calling render, state values are ", window.stateValues)
+    document.querySelector('#root').innerHTML = html();
+    currentRefCount = 0;
 }
 
-const fabricateModifier = (internalId) => {
-    console.log("fabricating hook state for variable with ref: "+internalId)
-    return (value) => {
-        console.log("updating value for ref "+internalId+" with "+value)
-        window.stateValues[internalId] = value;
+const fabricateModifier = (internalIndex) => {
+    console.log("fabricating hook state for variable with ref: "+internalIndex)
+    const setter = (value) => {
+        window.stateValues[internalIndex] = value;
+        console.log("updating value for ref "+internalIndex+" with ", value, window.stateValues )
         render()
     };
+    return setter;
 }
 
-const useState = (modifierName, defaultValue) => {
-    console.log("call use sate again")
-    window.stateValues[modifierName] = defaultValue;
-    window[modifierName] = fabricateModifier(modifierName)
-    return window.stateValues[modifierName];
+const useState = (defaultValue) => {
+    if(!window.stateValues[currentRefCount]) window.stateValues.push(defaultValue);
+    currentRefCount++;
+    return [ window.stateValues[currentRefCount-1], fabricateModifier(currentRefCount-1) ];
 }
+
+window.onload = render();
