@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="styles.css" rel="stylesheet"/>
+    <title>Rigobot extension</title>
+</head>
+<body>
+    <div id="container" class="container login-container">
+        <h1>Welcome to Rigobot, first login into your user to obtain your token</h1>
+        <form method="post" class="form-login">
+            <input type="email" placeholder="email" name="username">
+            <input type="password" placeholder="password" name="password">
+            <input type="hidden" value='True' name="extension">
+            <button type="submit">Obtain token</button>
+        </form>
+        <div class="token-container"></div>
+        <button class="view-token">Show token</button>
+    </div>
+    <div class="templates-container" style="display: block;">
+    </div>
+    <script src="main.js">
+    </script>
+</body>
+</html>
