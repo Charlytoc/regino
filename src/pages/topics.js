@@ -55,7 +55,7 @@ let html = () => {
         <footer>
         <div>
         <img src="rigo-icon.png"/>
-        <div><p>${name}</p><div><p>${organizationName}</p><button>switch</button></div></div>
+        <div><p>${name}</p><div><p>${organizationName}</p><button id="switch-organization">switch</button></div></div>
         </div>
         <div>
         <button>Logout</button></div>
@@ -65,5 +65,6 @@ let html = () => {
 
 document.addEventListener("render", ()=>{
     document.querySelector("#topics-select").addEventListener('change', actions.handleTopicsChange)
-    document.querySelector("#choose-topic").addEventListener('click', actions.chooseTopic)
+    document.querySelector("#choose-topic").addEventListener('click', actions.chooseTopic);
+    document.querySelector("#switch-organization").addEventListener('click', actions.switchToOrganization)
 })

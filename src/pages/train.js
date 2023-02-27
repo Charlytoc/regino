@@ -14,7 +14,7 @@ let html = () => {
         <footer>
         <div>
         <img src="rigo-icon.png"/>
-        <div><p>Alejandro Sanchez</p><div><p>4Geeks Academy</p><button>switch</button></div></div>
+        <div><p>Alejandro Sanchez</p><div><p>4Geeks Academy</p><button id="switch-organization">switch</button></div></div>
         </div>
         <div>
         <button>Logout</button></div>

@@ -61,7 +61,7 @@ let html = () => {
         <footer>
         <div>
         <img src="rigo-icon.png"/>
-        <div><p>${name}</p><div><p>${organizationName}</p><button>switch</button></div></div>
+        <div><p>${name}</p><div><p>${organizationName}</p><button id="switch-organization">switch</button></div></div>
         </div>
         <div>
         <button>Logout</button>
@@ -75,5 +75,6 @@ document.addEventListener("render", ()=>{
     document.querySelector("#generate-button").addEventListener('click', actions.generate)
     const variableInputs = document.querySelectorAll(".variable-input")
     variableInputs.forEach((input) => input.addEventListener('change', actions.handleInput))
+    document.querySelector("#switch-organization").addEventListener('click', actions.switchToOrganization)
 
 })

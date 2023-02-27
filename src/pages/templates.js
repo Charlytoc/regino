@@ -57,7 +57,7 @@ let html = () => {
         <footer>
         <div>
         <img src="rigo-icon.png"/>
-        <div><p>${name}</p><div><p>${organizationName}</p><button>switch</button></div></div>
+        <div><p>${name}</p><div><p>${organizationName}</p><button id="switch-organization">switch</button></div></div>
         </div>
         <div>
         <button>Logout</button></div>
@@ -71,6 +71,7 @@ document.addEventListener("render", ()=>{
         container.addEventListener('click', actions.selectTemplate);
     });
     document.querySelector("#go-to-topics").addEventListener('click', actions.goToTopics)
+    document.querySelector("#switch-organization").addEventListener('click', actions.switchToOrganization)
 
 })
 
