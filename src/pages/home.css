@@ -3,6 +3,35 @@
    and it has to match the js and css file names 
 */
 .home{
-   background: rgb(255, 0, 0);
-   width: 100vw;
+   margin: 0 auto;
+   height: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+   
+}
+.home > div {
+   margin: 0 auto;
+   text-align: left;
+   width: 80%;
+   text-align: center;
+}
+.home > div > * {
+   margin-bottom: 10px;
+ }
+ .home > div > h1 {
+   font-size: 24px;
+ }
+ .home > div > input, button {
+   padding: 10px;
+   width: 100%;
+ }
+ .home > div > button {
+   width: 100%;
+   background-color: var(--color-one);
+   color: white;
+   padding: 10px;
+   border-radius: 3px;
+   border: 0;
 }

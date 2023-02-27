@@ -2,14 +2,17 @@ window.stateValues = []
 let currentRefCount = 0;
 window.actions = {};
 
+const RENDER_EVENT = new Event('render')
 const render = () => {
-    console.log("Calling render, state values are ", window.stateValues)
+    // console.log("Calling render, state values are ", window.stateValues)
     document.querySelector('#root').innerHTML = html();
     currentRefCount = 0;
+    document.dispatchEvent(RENDER_EVENT);
 }
 
+
 const fabricateModifier = (internalIndex) => {
-    console.log("fabricating hook state for variable with ref: "+internalIndex)
+    // console.log("fabricating hook state for variable with ref: "+internalIndex)
     const setter = (value) => {
         window.stateValues[internalIndex] = value;
         console.log("updating value for ref "+internalIndex+" with ", value, window.stateValues )

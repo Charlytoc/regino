@@ -1,11 +1,27 @@
 {
   "pages": [
     {
+      "name": "generate",
+      "hasStyles": true
+    },
+    {
       "name": "home",
       "hasStyles": true
     },
     {
-      "name": "login",
+      "name": "organizations",
+      "hasStyles": true
+    },
+    {
+      "name": "templates",
+      "hasStyles": true
+    },
+    {
+      "name": "topics",
+      "hasStyles": true
+    },
+    {
+      "name": "train",
       "hasStyles": true
     }
   ]
