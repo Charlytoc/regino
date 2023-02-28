@@ -87,7 +87,7 @@ let html = () => {
         <div><p>${name}</p><div><p>${organizationName}</p><button id="switch-organization">switch</button></div></div>
         </div>
         <div>
-        <button>Logout</button>
+        <button id="logout-button">Logout</button>
         </div>
         </footer>
     </div>`;
@@ -99,5 +99,5 @@ document.addEventListener("render", ()=>{
     const variableInputs = document.querySelectorAll(".variable-input")
     variableInputs.forEach((input) => input.addEventListener('change', actions.handleInput))
     document.querySelector("#switch-organization").addEventListener('click', actions.switchToOrganization)
-
+    document.querySelector("#logout-button").addEventListener('click', actions.logout)
 })

@@ -1,6 +1,7 @@
 // Must be called html
 let html = () => {
-    const [name, setName] = useState('Alejandro')
+    const name = localStorage.getItem('name')
+    const organizationName = localStorage.getItem('organizationName')
 
     return `<div class="train">
         <header class="header train-header"><a href="templates.html">Generate</a><a>Train</a></header>
@@ -14,11 +15,18 @@ let html = () => {
         <footer>
         <div>
         <img src="rigo-icon.png"/>
-        <div><p>Alejandro Sanchez</p><div><p>4Geeks Academy</p><button id="switch-organization">switch</button></div></div>
+        <div><p>${name}</p><div><p>${organizationName}</p><button id="switch-organization">switch</button></div></div>
         </div>
         <div>
-        <button>Logout</button></div>
+        <button id="logout-button">Logout</button></div>
         </footer>
     </div>`;
 }
-// <option value="{{ object.name }}">{{ object.name }}</option>
+document.addEventListener("render", ()=>{
+    document.querySelector("#switch-organization").addEventListener('click', ()=>{
+        actions.switchToOrganization()
+    })
+    document.querySelector("#logout-button").addEventListener('click', ()=>{
+        actions.logout()
+    })
+})

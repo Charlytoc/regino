@@ -60,7 +60,7 @@ let html = () => {
         <div><p>${name}</p><div><p>${organizationName}</p><button id="switch-organization">switch</button></div></div>
         </div>
         <div>
-        <button>Logout</button></div>
+        <button id="logout-button">Logout</button></div>
         </footer>
     </div>`;
 }
@@ -72,6 +72,7 @@ document.addEventListener("render", ()=>{
     });
     document.querySelector("#go-to-topics").addEventListener('click', actions.goToTopics)
     document.querySelector("#switch-organization").addEventListener('click', actions.switchToOrganization)
+    document.querySelector("#logout-button").addEventListener('click', actions.logout)
 
 })
 
