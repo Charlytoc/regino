@@ -10,3 +10,11 @@ const switchToOrganization = () => {
 }
 actions.switchToOrganization = switchToOrganization
 // document.querySelector('#switch-organization').addEventListener('click', switchToOrganization)
+
+chrome.runtime.onMessageExternal.addListener(function(request, sender, sendResponse) {
+    if (request.openExtension) {
+      // Abrir la extensión aquí
+      // Por ejemplo: chrome.runtime.openOptionsPage();
+      chrome.browserAction.openPopup();
+    }
+  });

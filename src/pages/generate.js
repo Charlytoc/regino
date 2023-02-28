@@ -9,10 +9,10 @@ let html = () => {
 
     const [fetched, setFetched] = useState(false)
     const [template, setTemplate] = useState([])
-    const url = 'https://8000-charlytoc-rigobot-zs3y5cs1199.ws-us88.gitpod.io/extension/complete/'
+    const url = 'https://8000-charlytoc-rigobot-zs3y5cs1199.ws-us88.gitpod.io'
 
     if (!fetched) {
-        fetch(url, {
+        fetch(url+'/extension/complete/', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -37,10 +37,32 @@ let html = () => {
         window.location.href = "templates.html"
     }
     actions.generate = (e) => {
-        console.log(template)
+        fetch(`${url}/v1/prompting/complete/?template_id=${template_id}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                inputs: inputsObject,
+                extension: true
+            })
+          })
+          .then(response => response.json())
+          .then((data) =>{
+            // const modal = document.querySelector(".modal-copied")
+            // let answer = JSON.stringify(data.answer);
+            // answer = answer.replace(/\\n/g, '').replace(/\\/g, '').replace(/"/g, '');
+            // navigator.clipboard.writeText(answer);
+            // modal.style.display = 'block';
+            // setTimeout(()=>{
+            //     modal.style.display = 'none';
+            // }, 1000)
+            chrome.tabs.create({url: `${url}/view/complete/?completion=${data.completion}`});
+          } )
     }
+    const inputsObject = {}
     actions.handleInput = (e) => {
-
+        inputsObject[e.target.name] = e.target.value
     }
     const returnInputs = (obj) => {
         let inputs = ""
@@ -57,6 +79,7 @@ let html = () => {
         <h2>${template.name}:</h2>
         ${returnInputs(template.variables)}
         <button id="generate-button">Generate</button>
+        <div class="modal-copied">Answer copied to clipboard!</div>
         </main>
         <footer>
         <div>

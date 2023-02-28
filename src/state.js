@@ -15,7 +15,7 @@ const fabricateModifier = (internalIndex) => {
     // console.log("fabricating hook state for variable with ref: "+internalIndex)
     const setter = (value) => {
         window.stateValues[internalIndex] = value;
-        console.log("updating value for ref "+internalIndex+" with ", value, window.stateValues )
+        // console.log("updating value for ref "+internalIndex+" with ", value, window.stateValues )
         render()
     };
     return setter;
