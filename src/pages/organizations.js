@@ -13,16 +13,18 @@ let html = () => {
     actions.handleOrganizationChange = (e) => {
         setSelectedOrganization(e.target.value);
     }
-    const url = 'https://8000-charlytoc-rigobot-zs3y5cs1199.ws-us88.gitpod.io/extension/complete/'
 
     actions.chooseOrgnization = (e) => {
         const organizationName = organizations.find(item => item.id == selectedOrganization).name
         localStorage.setItem('organization', selectedOrganization)
         localStorage.setItem('organizationName', organizationName)
-        window.location.href = "topics.html"
+        if (selectedOrganization != 0) {
+            window.location.href = "topics.html"
+        }
+        
     }
     if (!fetched) {
-        fetch(url, {
+        fetch(API_URL+'/extension/complete/', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -44,7 +46,7 @@ let html = () => {
     return `<div class="organizations">
         <div>
         <h1>Hi, ${name}</h1>
-        <p>Please choose an organization</p>
+        <p>Please choose asdn organization</p>
         <select id="organizations-select">
         <option value="0" selected>Select or type an organization</option>
         ${organizations.map((item, index) => `<option ${isSelected(item.id)} value=${item.id}>${item.name}</option>`)}

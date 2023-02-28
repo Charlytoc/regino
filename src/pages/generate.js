@@ -37,7 +37,7 @@ let html = () => {
         window.location.href = "templates.html"
     }
     actions.generate = (e) => {
-        fetch(`${url}/v1/prompting/complete/?template_id=${template_id}`, {
+        fetch(`${API_URL}/v1/prompting/complete/?template_id=${template_id}`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'

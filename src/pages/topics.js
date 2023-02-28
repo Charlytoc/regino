@@ -7,14 +7,13 @@ let html = () => {
     const name = localStorage.getItem('name')
     const organization = localStorage.getItem('organization')
     const organizationName = localStorage.getItem('organizationName')
-    const url = 'https://8000-charlytoc-rigobot-zs3y5cs1199.ws-us88.gitpod.io/extension/complete/'
 
 
     if (localStorage.getItem('topic')) {
         window.location.href = 'templates.html'
     }
     if (!fetched) {
-        fetch(url, {
+        fetch(API_URL+'/extension/complete/', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'

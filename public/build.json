@@ -1,11 +1,11 @@
 {
   "pages": [
     {
-      "name": "generate",
+      "name": "home",
       "hasStyles": true
     },
     {
-      "name": "home",
+      "name": "generate",
       "hasStyles": true
     },
     {

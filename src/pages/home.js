@@ -14,11 +14,10 @@ let html = () => {
     actions.handlePasswordChange = (e) => {
         setPassword(e.target.value);
     }
-    const url = 'https://8000-charlytoc-rigobot-zs3y5cs1199.ws-us88.gitpod.io/v1/prompting/auth/'
 
     actions.login = (e) => {
         console.log(email, password)
-        fetch(url, {
+        fetch(API_URL+'/v1/prompting/auth/', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'

@@ -9,10 +9,8 @@ let html = () => {
     const [fetched, setFetched] = useState(false)
     const [templates, setTemplates] = useState([])
 
-
-    const url = 'https://8000-charlytoc-rigobot-zs3y5cs1199.ws-us88.gitpod.io/extension/complete/'
     if (!fetched) {
-        fetch(url, {
+        fetch(API_URL+'/extension/complete/', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'

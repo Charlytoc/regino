@@ -1,6 +1,8 @@
 window.stateValues = []
 let currentRefCount = 0;
 window.actions = {};
+const API_URL = 'https://8000-charlytoc-rigobot-zs3y5cs1199.ws-us88.gitpod.io'
+
 
 const RENDER_EVENT = new Event('render')
 const render = () => {
