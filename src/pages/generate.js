@@ -9,10 +9,10 @@ let html = () => {
 
     const [fetched, setFetched] = useState(false)
     const [template, setTemplate] = useState([])
-    const url = 'https://8000-charlytoc-rigobot-zs3y5cs1199.ws-us88.gitpod.io'
+
 
     if (!fetched) {
-        fetch(url+'/extension/complete/', {
+        fetch(API_URL+'/extension/complete/', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -57,7 +57,7 @@ let html = () => {
             // setTimeout(()=>{
             //     modal.style.display = 'none';
             // }, 1000)
-            chrome.tabs.create({url: `${url}/view/complete/?completion=${data.completion}`});
+            chrome.tabs.create({url: `${API_URL}/view/complete/?completion=${data.completion}`});
           } )
     }
     const inputsObject = {}
