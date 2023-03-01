@@ -36,8 +36,8 @@ let html = () => {
           })
           .then(response => response.json())
           .then((data) =>{
-            setOrganizations(data.organizations)
-            setFetched(true)
+            setOrganizations(data.organizations, renderize=false);
+            setFetched(true);
           } )
     }
     const isSelected = (id) => id == selectedOrganization ? 'selected' : 'null'

@@ -26,7 +26,7 @@ let html = () => {
           })
           .then(response => response.json())
           .then((data) =>{
-            setTemplate(data.template);
+            setTemplate(data.template, renderize=false);
             setFetched(true);
           } )
     }
@@ -49,14 +49,6 @@ let html = () => {
           })
           .then(response => response.json())
           .then((data) =>{
-            // const modal = document.querySelector(".modal-copied")
-            // let answer = JSON.stringify(data.answer);
-            // answer = answer.replace(/\\n/g, '').replace(/\\/g, '').replace(/"/g, '');
-            // navigator.clipboard.writeText(answer);
-            // modal.style.display = 'block';
-            // setTimeout(()=>{
-            //     modal.style.display = 'none';
-            // }, 1000)
             chrome.tabs.create({url: `${API_URL}/view/complete/?completion=${data.completion}`});
           } )
     }

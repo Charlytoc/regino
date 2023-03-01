@@ -3,6 +3,7 @@ let currentRefCount = 0;
 window.actions = {};
 const API_URL = 'https://rigobot.herokuapp.com'
 
+
 const RENDER_EVENT = new Event('render')
 const render = () => {
     // console.log("Calling render, state values are ", window.stateValues)
@@ -14,10 +15,14 @@ const render = () => {
 
 const fabricateModifier = (internalIndex) => {
     // console.log("fabricating hook state for variable with ref: "+internalIndex)
-    const setter = (value) => {
+    const setter = (value, renderize=true) => {
         window.stateValues[internalIndex] = value;
         // console.log("updating value for ref "+internalIndex+" with ", value, window.stateValues )
-        render()
+        if (renderize) {
+            render()
+        }
+        
+        
     };
     return setter;
 }

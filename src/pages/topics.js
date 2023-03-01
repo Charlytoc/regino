@@ -26,7 +26,7 @@ let html = () => {
           })
           .then(response => response.json())
           .then((data) =>{
-            setTopics(data.topics)
+            setTopics(data.topics,  renderize=false);
             setFetched(true)
           } )
     }

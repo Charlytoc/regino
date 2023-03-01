@@ -24,8 +24,8 @@ let html = () => {
           })
           .then(response => response.json())
           .then((data) =>{
-            
-            setTemplates(data.templates)
+            console.log(data.templates)
+            setTemplates(data.templates,  renderize=false);
             setFetched(true);
           } )
     }
