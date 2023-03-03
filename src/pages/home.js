@@ -6,15 +6,18 @@ let html = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     actions.handleEmailChange = (e) => {
-        setEmail(e.target.value, renderize=false)
+        // setEmail(e.target.value, renderize=false)
+        loginObject.email = e.target.value
     }
     if (token && name) {
         window.location.href = 'organizations.html'
     }
     actions.handlePasswordChange = (e) => {
-        setPassword(e.target.value)
+        // setPassword(e.target.value)
+        loginObject.password = e.target.value
 
     }
+    const loginObject = {}
 
     actions.login = (e) => {
         fetch(API_URL+'/v1/prompting/auth/', {
@@ -24,8 +27,8 @@ let html = () => {
             },
             body: JSON.stringify({
                 extension: true,
-                username: email,
-                password: password
+                username: loginObject.email,
+                password: loginObject.password
             })
           })
           .then(response => {
@@ -58,8 +61,8 @@ let html = () => {
     return `<div class="home">
     <img src="src/assets/rigobot-logo.png" />
     <div><h1>Please log in</h1>
-    <input value="${email}" id="email-input" placeholder="Email" type="email" />
-    <input value="${password}"  id="password-input" placeholder="Password" type="password" />
+    <input  id="email-input" placeholder="Email" type="email" />
+    <input  id="password-input" placeholder="Password" type="password" />
     <button id="login-button">Login</button>
     <div class="error">${error}</div>
     </div>
