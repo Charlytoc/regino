@@ -1,0 +1,20 @@
+.train{
+    height: 100%;
+ }
+ .train > main {
+    padding: var(--standard-padding);
+ }
+ .train > main > * {
+    margin-top: 10px;
+    font-size: 14px;
+ }
+ .train > main > h1 {
+    text-align: center;
+    font-size: 24px;
+ }
+ .train > main > h2 {
+    font-weight: 700;
+ }
+ .train > main > h1 > img {
+    height: 20px;
+ }

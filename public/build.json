@@ -5,7 +5,23 @@
       "hasStyles": true
     },
     {
-      "name": "login",
+      "name": "generate",
+      "hasStyles": true
+    },
+    {
+      "name": "organizations",
+      "hasStyles": true
+    },
+    {
+      "name": "templates",
+      "hasStyles": true
+    },
+    {
+      "name": "topics",
+      "hasStyles": true
+    },
+    {
+      "name": "train",
       "hasStyles": true
     }
   ]
