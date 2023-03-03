@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Rigobot extension pure",
   "description": "Generate content based on templates",
-  "version": "1.0",
+  "version": "1.0.1",
   "action": {
     "default_popup": "home.html",
     "default_icon": "icon.png"
