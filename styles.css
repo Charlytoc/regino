@@ -77,11 +77,14 @@ footer > div:last-child button {
 footer > div > div >div {
     display: flex;
     gap: 10px;
+    align-items: center;
 }
 footer > div > div > div > button {
     background-color: white;
     border: 0;
     color: var(--color-one);
+    display: flex;
+    align-items: center;
 }
 footer > div  img {
     height: 25px;

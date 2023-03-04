@@ -67,7 +67,12 @@ let html = () => {
      return `<div class="generate">
         <header class="header"><a>Generate</a><a href="train.html">Train</a></header>
         <main>
-        <a id="go-to-templates">Generate something else</a>
+        <a id="go-to-templates">
+        <svg width="12" height="12" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M14 9L4 18L14 27" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M26 9L16 18L26 27" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Generate something else</a>
         <h2>${template.name}:</h2>
         ${returnInputs(template.variables)}
         <button id="generate-button">Generate</button>
@@ -76,7 +81,12 @@ let html = () => {
         <footer>
         <div>
         <img src="rigo-icon.png"/>
-        <div><p>${name}</p><div><p>${organizationName}</p><button id="switch-organization">switch</button></div></div>
+        <div><p>${name}</p><div><p>${organizationName}</p><button id="switch-organization">
+        <svg width="12" height="12" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M14 9L4 18L14 27" stroke="#2F80ED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M26 9L16 18L26 27" stroke="#2F80ED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        switch</button></div></div>
         </div>
         <div>
         <button id="logout-button">Logout</button>
