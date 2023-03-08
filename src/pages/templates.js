@@ -41,7 +41,7 @@ let html = () => {
     }
 
     return `<div class="templates">
-        <header class="header"><a>Generate</a><a href="train.html">Train</a></header>
+        <header class="header"><a>Get help from Rigo</a><a href="train.html">Teach Rigo</a></header>
         <main>
         <a id="go-to-topics">
         <svg width="12" height="12" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">

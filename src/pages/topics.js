@@ -43,7 +43,7 @@ let html = () => {
     }
 
     return `<div class="topics">
-        <header class="header"><a>Generate</a><a href="train.html">Train</a></header>
+        <header class="header"><a>Get help from Rigo</a><a href="train.html">Teach rigo</a></header>
         <main>
         <h1>Choose a topic of expertise</h1>
         <select id="topics-select">

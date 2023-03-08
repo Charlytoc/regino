@@ -4,7 +4,7 @@ let html = () => {
     const organizationName = localStorage.getItem('organizationName')
 
     return `<div class="train">
-        <header class="header train-header"><a href="templates.html">Generate</a><a>Train</a></header>
+        <header class="header train-header"><a href="templates.html">Get help from Rigo</a><a>Teach Rigo</a></header>
         <main>
         <h1><img src="rigo-icon.png" />Coming soon!</h1>
         <h2>Bookmark websites</h2>
