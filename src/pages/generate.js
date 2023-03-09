@@ -59,7 +59,7 @@ let html = () => {
     const returnInputs = (obj) => {
         let inputs = ""
         for (let variable in obj) {
-            inputs += `<input class="variable-input" name="${variable}" type="text" placeholder="${obj[variable]}"/>`
+            inputs += `<input class="variable-input" name="${variable}" type="text" placeholder="${variable}"/>`
         }
         return inputs
     }
@@ -99,7 +99,7 @@ document.addEventListener("render", ()=>{
     document.querySelector("#go-to-templates").addEventListener('click', actions.goToTemplates)
     document.querySelector("#generate-button").addEventListener('click', actions.generate)
     const variableInputs = document.querySelectorAll(".variable-input")
-    variableInputs.forEach((input) => input.addEventListener('change', actions.handleInput))
+    variableInputs.forEach((input) => input.addEventListener('keyup', actions.handleInput))
     document.querySelector("#switch-organization").addEventListener('click', actions.switchToOrganization)
     document.querySelector("#logout-button").addEventListener('click', actions.logout)
 })
