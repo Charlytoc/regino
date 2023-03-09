@@ -3,17 +3,14 @@ let html = () => {
     const token = localStorage.getItem('token');
     const name = localStorage.getItem('name')
     const [error, setError] = useState('Error')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+
     actions.handleEmailChange = (e) => {
-        // setEmail(e.target.value, renderize=false)
         loginObject.email = e.target.value
     }
     if (token && name) {
         window.location.href = 'organizations.html'
     }
     actions.handlePasswordChange = (e) => {
-        // setPassword(e.target.value)
         loginObject.password = e.target.value
 
     }
@@ -42,7 +39,7 @@ let html = () => {
           .then((data) =>{
             localStorage.setItem('name', data.name)
             localStorage.setItem('token', data.token)
-            window.location.href = 'organizations.html'
+            window.location.href = 'templates.html'
           } ).
           catch((error) => {
             if (error.message.startsWith('4')) {
@@ -64,12 +61,11 @@ let html = () => {
     <input  id="email-input" placeholder="Email" type="email" />
     <input  id="password-input" placeholder="Password" type="password" />
     <button id="login-button">Login</button>
-    <div class="signup">
-    <a class="backwards">Forgot password?</a>
-    <p>Don't have an account? <a class="backwards" href="signup.html">Sign up here </a></p>
-    </div>
-
     <div class="error">${error}</div>
+    <div class="signup">
+    <a href="forgot.html" class="backwards ">Forgot password?</a>
+    <p>Don't have an account? <a class="backwards " href="signup.html"> Sign up here </a></p>
+    </div>
     </div>
     </div>`;
 }

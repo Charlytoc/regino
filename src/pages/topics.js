@@ -7,7 +7,7 @@ let html = () => {
     const name = localStorage.getItem('name')
     const organization = localStorage.getItem('organization')
     const organizationName = localStorage.getItem('organizationName')
-
+    const [error, setError] = useState('Error')
 // Must be called html
 
     if (localStorage.getItem('topic')) {
@@ -34,8 +34,16 @@ let html = () => {
     const isSelected = (id) => id == selectedTopic ? 'selected' : 'null'
 
     actions.chooseTopic = (e) => {
-        localStorage.setItem('topic', selectedTopic)
-        window.location.href = "templates.html"
+        if (selectedTopic != 0) {
+            localStorage.setItem('topic', selectedTopic)
+            window.location.href = "templates.html"
+        }
+        else {
+            setError(`Please verify your email and password`);
+            const errorModal = document.querySelector(".error")
+            errorModal.style.animationPlayState = 'running';
+        }
+        
     }
 
     actions.handleTopicsChange = (e) => {
@@ -45,7 +53,7 @@ let html = () => {
     return `<div class="topics">
         <header class="header"><a>Get help from Rigo</a><a href="train.html">Teach rigo</a></header>
         <main>
-        <h1>Choose a topic of expertise</h1>
+        <h1>Filter help options by topic</h1>
         <select id="topics-select">
         <option value="0" selected>Select or type a topic</option>
         ${topics.map((item) => `<option ${isSelected(item.id)} value=${item.id}>${item.name}</option>`)}

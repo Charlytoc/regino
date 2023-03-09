@@ -92,17 +92,27 @@ footer > div  img {
 
 a.backwards.lighter {
     color: black;
-    opacity: 0.9;
+    opacity: 0.8;
     text-decoration: none;
  }
  a.backwards {
-    color: black;
-    /* opacity: 0.6;
-    text-decoration: none; */
+    color: rgba(0, 0, 0, 0.596);
+    display: inline-block;
+    opacity: 0.8;
+ }
+
+ a.backwards.right:hover {
+    transform: translateX(5px) !important;
+    transition: all 0.2s;
+ }
+ a.backwards.left:hover {
+    transform: translateX(-5px) !important;
+    transition: all 0.2s;
  }
  a.backwards:hover {
     opacity: 1;
     cursor: pointer;
-    scale: 1.01;
+    color: var(--color-one);
+    scale: 1.02;
     transition: all 0.2s;
  }

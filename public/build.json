@@ -1,6 +1,10 @@
 {
   "pages": [
     {
+      "name": "forgot",
+      "hasStyles": true
+    },
+    {
       "name": "generate",
       "hasStyles": true
     },
@@ -18,6 +22,10 @@
     },
     {
       "name": "templates",
+      "hasStyles": true
+    },
+    {
+      "name": "thanks",
       "hasStyles": true
     },
     {

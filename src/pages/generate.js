@@ -37,6 +37,8 @@ let html = () => {
         window.location.href = "templates.html"
     }
     actions.generate = (e) => {
+        const thinkingMessage = document.querySelector(".rigo-thinking")
+        thinkingMessage.style.display = 'block'
         fetch(`${API_URL}/v1/prompting/complete/?template_id=${template_id}`, {
             method: 'POST',
             headers: {
@@ -61,7 +63,9 @@ let html = () => {
         for (let variable in obj) {
             let description = variable.replace(/_/g, " ");
             description = description.charAt(0).toUpperCase() + description.slice(1)
-            inputs += `<input class="variable-input" name="${variable}" type="text" placeholder="${description}"/>`
+            inputs += `<input class="variable-input" name="${variable}" type="text" placeholder="${description}"/>
+            <span class="small">${obj[variable]}</span>
+            `
         }
         return inputs
     }
@@ -69,17 +73,19 @@ let html = () => {
      return `<div class="generate">
         <header class="header"><a>Get help from Rigo</a><a href="train.html">Teach Rigo</a></header>
         <main>
-        <a id="go-to-templates">
+        <a class="backwards" id="go-to-templates">
         <svg width="12" height="12" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M14 9L4 18L14 27" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M26 9L16 18L26 27" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        Generate something else</a>
+        Ask for help in something else</a>
         <h2>${template.name}:</h2>
         ${returnInputs(template.variables)}
         <button id="generate-button">Generate</button>
         <div class="modal-copied">Answer copied to clipboard!</div>
+        <div class="rigo-thinking">Wait until Rigo is thinking...</div>
         </main>
+
         <footer>
         <div>
         <img src="rigo-icon.png"/>

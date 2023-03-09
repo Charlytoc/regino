@@ -2,24 +2,27 @@
    Important! The component class name always have to be lowercase 
    and it has to match the js and css file names 
 */
-.home{
+.home > div > *:not(.signup) {
+
+   margin-top: 7px;
+}
+.home {
    margin: 0 auto;
    height: 100%;
    display: flex;
    align-items: center;
    justify-content: center;
    flex-direction: column;
-   
+  
 }
 .home > div {
-   margin: 0 auto;
+   margin: 3vh auto;
    text-align: left;
    width: 80%;
    text-align: center;
 }
-.home > div > * {
-   margin-bottom: 10px;
- }
+
+
  .home > div > h1 {
    font-size: 24px;
  }
@@ -37,7 +40,6 @@
 }
 .error {
    transform: translateX(500px);
-
    animation: downup 5s ease-in-out 1;
    animation-play-state: paused;
    background-color: #cbcbcb;
@@ -60,16 +62,16 @@
    100%{
       display: none;
       transform: translateX(500px);
+      animation-play-state: paused;
    }
 }
 .signup {
    text-align: left;
    font-weight: 400;
 }
-.signup a {
+.signup > *:first-child  {
    display: inline-block;
    cursor: pointer;
    text-decoration: underline;
-   /* font-weight: 700; */
    margin-bottom: 10px;
 }

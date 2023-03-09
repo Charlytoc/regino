@@ -69,7 +69,7 @@ let html = () => {
     <path d="M14 9L4 18L14 27" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     <path d="M26 9L16 18L26 27" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
-<a class="backwards lighter" href="home.html">Back to login</a></div>
+<a class="backwards right lighter" href="home.html">Back to login</a></div>
 
     </div>
     </div>`;

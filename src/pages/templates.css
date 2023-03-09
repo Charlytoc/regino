@@ -70,3 +70,6 @@ div.info-modal {
 .information-icon:hover + .info-modal {
 display: block;
 }
+#go-to-topics {
+    text-align: right;
+}
