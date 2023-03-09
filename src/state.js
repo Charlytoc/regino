@@ -4,6 +4,7 @@ window.actions = {};
 const API_URL = 'https://rigobot.herokuapp.com'
 
 
+
 const RENDER_EVENT = new Event('render')
 const render = () => {
     // console.log("Calling render, state values are ", window.stateValues)

@@ -59,7 +59,9 @@ let html = () => {
     const returnInputs = (obj) => {
         let inputs = ""
         for (let variable in obj) {
-            inputs += `<input class="variable-input" name="${variable}" type="text" placeholder="${variable}"/>`
+            let description = variable.replace(/_/g, " ");
+            description = description.charAt(0).toUpperCase() + description.slice(1)
+            inputs += `<input class="variable-input" name="${variable}" type="text" placeholder="${description}"/>`
         }
         return inputs
     }
