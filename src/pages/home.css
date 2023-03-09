@@ -62,3 +62,14 @@
       transform: translateX(500px);
    }
 }
+.signup {
+   text-align: left;
+   font-weight: 400;
+}
+.signup a {
+   display: inline-block;
+   cursor: pointer;
+   text-decoration: underline;
+   /* font-weight: 700; */
+   margin-bottom: 10px;
+}

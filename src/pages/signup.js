@@ -58,18 +58,19 @@ let html = () => {
 
 
         
-    return `<div class="home">
+    return `<div class="signup">
     <img src="src/assets/rigobot-logo.png" />
-    <div><h1>Please log in</h1>
+    <div><h2>Fill your basic information to create an account</h2>
     <input  id="email-input" placeholder="Email" type="email" />
     <input  id="password-input" placeholder="Password" type="password" />
+    <input  id="password-input" placeholder="Password" type="password" />
     <button id="login-button">Login</button>
-    <div class="signup">
-    <a class="backwards">Forgot password?</a>
-    <p>Don't have an account? <a class="backwards" href="signup.html">Sign up here </a></p>
-    </div>
+    <div><svg width="12" height="12" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M14 9L4 18L14 27" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M26 9L16 18L26 27" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+<a class="backwards lighter" href="home.html">Back to login</a></div>
 
-    <div class="error">${error}</div>
     </div>
     </div>`;
 }

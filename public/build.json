@@ -13,6 +13,10 @@
       "hasStyles": true
     },
     {
+      "name": "signup",
+      "hasStyles": true
+    },
+    {
       "name": "templates",
       "hasStyles": true
     },
