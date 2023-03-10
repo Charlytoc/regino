@@ -38,33 +38,7 @@
    border-radius: 3px;
    border: 0;
 }
-.error {
-   transform: translateX(500px);
-   animation: downup 5s ease-in-out 1;
-   animation-play-state: paused;
-   background-color: #cbcbcb;
-   padding: var(--standard-padding);
-   border-radius: 3px;
-   color: rgb(0, 0, 0);
-   font-weight: 700;
-}
-@keyframes downup {
-   0%{
-      transform: translateX(500px);
-      display: block;
-   }
-   15%{
-      transform: translateX(0px);
-   }
-   85%{
-      transform: translateX(0px);
-   }
-   100%{
-      display: none;
-      transform: translateX(500px);
-      animation-play-state: paused;
-   }
-}
+
 .signup {
    text-align: left;
    font-weight: 400;

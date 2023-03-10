@@ -36,10 +36,11 @@ let html = () => {
     actions.chooseTopic = (e) => {
         if (selectedTopic != 0) {
             localStorage.setItem('topic', selectedTopic)
+            console.log(selectedTopic)
             window.location.href = "templates.html"
         }
         else {
-            setError(`Please verify your email and password`);
+            setError(`Please choose a topic`);
             const errorModal = document.querySelector(".error")
             errorModal.style.animationPlayState = 'running';
         }
@@ -59,7 +60,10 @@ let html = () => {
         ${topics.map((item) => `<option ${isSelected(item.id)} value=${item.id}>${item.name}</option>`)}
         </select>
         <button id="choose-topic">Show templates</button>
+        <div class="error">${error}</div>
         </main>
+
+
         <footer>
         <div>
         <img src="rigo-icon.png"/>

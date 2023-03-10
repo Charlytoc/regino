@@ -7,7 +7,7 @@ let html = () => {
     const topic = localStorage.getItem('topic')
 
     const DEFAULT_ORGANIZATION = 1
-    const DEFAULT_TOPIC = 1
+    const DEFAULT_TOPIC = 0
     const DEFAULT_ORGANIZATION_NAME = "4Geeks"
     const [fetched, setFetched] = useState(false)
     const [templates, setTemplates] = useState([])
