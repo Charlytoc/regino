@@ -65,8 +65,24 @@ div.info-modal {
     width: 80%;
     background-color: #dadada;
     padding: var(--standard-padding);
-    border-top: none;
+    border: 1px solid black;
+    border-radius: 10px;
 }
+div.info-modal::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    display: block;
+    border: 1px solid black;
+    border-top: 0;
+    background-color: #dadada;
+    border-left: 0;
+    position: absolute;
+    top: 93%;
+    right:4%;
+    transform: rotate(45deg);
+  }
+
 .information-icon:hover + .info-modal {
 display: block;
 }

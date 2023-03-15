@@ -14,3 +14,12 @@ const logout = () => {
     window.location.href = "home.html"
 }
 actions.logout = logout
+
+
+chrome.contextMenus.create({
+    title: "Analizar texto",
+    contexts:["selection"],
+    onclick: function(info) {
+      // aquí se llamará a la función que analizará el texto seleccionado
+    }
+  });

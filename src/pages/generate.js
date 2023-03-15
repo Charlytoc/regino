@@ -37,8 +37,10 @@ let html = () => {
         window.location.href = "templates.html"
     }
     actions.generate = (e) => {
-        const thinkingMessage = document.querySelector(".rigo-thinking")
-        thinkingMessage.style.display = 'block'
+        const buttonThinking = e.target
+        buttonThinking.innerHTML = "Rigo is thinking..."
+        buttonThinking.disabled = true;
+        buttonThinking.classList.add('rigo-thinking');
         fetch(`${API_URL}/v1/prompting/complete/?template_id=${template_id}`, {
             method: 'POST',
             headers: {
@@ -83,7 +85,6 @@ let html = () => {
         ${returnInputs(template.variables)}
         <button id="generate-button">Generate</button>
         <div class="modal-copied">Answer copied to clipboard!</div>
-        <div class="rigo-thinking">Wait until Rigo is thinking...</div>
         </main>
 
         <footer>
