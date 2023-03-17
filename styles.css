@@ -127,6 +127,14 @@ a.backwards.lighter {
     color: rgb(0, 0, 0);
     font-weight: 700;
  }
+ .completions-toggle {
+    display: inline-block;
+    background-color: #EB5757;
+    padding: 3px 6px;
+    margin-left: 3px;
+    color: white;
+    border-radius: 4px;
+ }
  @keyframes downup {
     0%{
        transform: translateX(500px);

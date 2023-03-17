@@ -5,10 +5,11 @@ let html = () => {
     const [selectedTopic, setSelectedTopic] = useState(0)
     const token = localStorage.getItem('token');
     const name = localStorage.getItem('name')
+    const pendingCompletions = localStorage.getItem('pendingCompletions')
     const organization = localStorage.getItem('organization')
     const organizationName = localStorage.getItem('organizationName')
     const [error, setError] = useState('Error')
-// Must be called html
+
 
     if (localStorage.getItem('topic')) {
         window.location.href = 'templates.html'
@@ -52,7 +53,7 @@ let html = () => {
     }
 
     return `<div class="topics">
-        <header class="header"><a>Get help from Rigo</a><a href="train.html">Teach rigo</a></header>
+        <header class="header"><a>Get help from Rigo</a><a href="train.html">Teach rigo<span class="completions-toggle">${pendingCompletions}</span></a></header>
         <main>
         <h1>Filter help options by topic</h1>
         <select id="topics-select">

@@ -11,29 +11,43 @@ let html = () => {
     const DEFAULT_ORGANIZATION_NAME = "4Geeks"
     const [fetched, setFetched] = useState(false)
     const [templates, setTemplates] = useState([])
+    const [pendingCompletions, setPendingCompletions] = useState(0)
 
     const current_organization = () => organization == null ?DEFAULT_ORGANIZATION : organization
     const current_topic = () => topic == null ? DEFAULT_TOPIC : topic
     const currentOrganizationName = () => organizationName == null ? DEFAULT_ORGANIZATION_NAME : organizationName
+
+
     if (!fetched) {
+       
         fetch(API_URL+'/extension/complete/', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                token: token,
-                organization: current_organization(),
-                topic: current_topic(),
-                template: null
+              token: token,
+              organization: current_organization(),
+              topic: current_topic(),
+              template: null
             })
           })
           .then(response => response.json())
-          .then((data) =>{
-            console.log(data.templates)
+          .then((data) => {
             setTemplates(data.templates,  renderize=false);
+            return fetch(API_URL+`/v1/finetuning/completions/list/?token=${token}&total=True`);
+          })
+          .then(response => response.json())
+          .then(data => {
+            setPendingCompletions(pendingCompletions+data, renderize=false);
+            localStorage.setItem('pendingCompletions', data)
             setFetched(true);
-          } )
+          })
+          .catch(error => {
+            console.error('An error occurred: ', error);
+          });
+          
+  
     }
     actions.selectTemplate = (e) => {
         e.preventDefault();
@@ -50,7 +64,7 @@ let html = () => {
     }
 
     return `<div class="templates">
-        <header class="header"><a>Get help from Rigo</a><a href="train.html">Teach Rigo</a></header>
+        <header class="header"><a>Get help from Rigo</a><a href="train.html">Teach Rigo<span class="completions-toggle">${pendingCompletions}</span> </a></header>
         <main>
         <a class="backwards left" id="go-to-topics">
         <svg width="8" height="9" viewBox="0 0 8 9" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -61,8 +75,7 @@ let html = () => {
         ${templates.map((item) => `<a data-template=${item.id} class="template-container"><h2>${item.name}</h2>
         <div><small>${item.variables} variables</small><i class="fa-solid fa-circle-info information-icon"></i>
         <div class="info-modal">${item.description}</div></div>
-    </a>`
-        
+        </a>`
         )}
         
         </main>
@@ -90,6 +103,5 @@ document.addEventListener("render", ()=>{
     document.querySelector("#go-to-topics").addEventListener('click', actions.goToTopics)
     document.querySelector("#switch-organization").addEventListener('click', actions.switchToOrganization)
     document.querySelector("#logout-button").addEventListener('click', actions.logout)
-
 })
 

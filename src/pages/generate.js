@@ -6,7 +6,7 @@ let html = () => {
     const organizationName = localStorage.getItem('organizationName')
     const topic = localStorage.getItem('topic')
     const template_id = localStorage.getItem('template')
-
+    const pendingCompletions = localStorage.getItem('pendingCompletions')
     const [fetched, setFetched] = useState(false)
     const [template, setTemplate] = useState([])
 
@@ -73,7 +73,7 @@ let html = () => {
     }
 
      return `<div class="generate">
-        <header class="header"><a>Get help from Rigo</a><a href="train.html">Teach Rigo</a></header>
+        <header class="header"><a>Get help from Rigo</a><a href="train.html">Teach Rigo <span class="completions-toggle">${pendingCompletions}</span></a></header>
         <main>
         <a class="backwards" id="go-to-templates">
         <svg width="12" height="12" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
