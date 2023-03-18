@@ -9,17 +9,18 @@ let html = () => {
     const DEFAULT_ORGANIZATION = 1
     const DEFAULT_TOPIC = 0
     const DEFAULT_ORGANIZATION_NAME = "4Geeks"
+
     const [fetched, setFetched] = useState(false)
     const [templates, setTemplates] = useState([])
     const [pendingCompletions, setPendingCompletions] = useState(0)
 
-    const current_organization = () => organization == null ?DEFAULT_ORGANIZATION : organization
+    const current_organization = () => organization == null ? DEFAULT_ORGANIZATION : organization
     const current_topic = () => topic == null ? DEFAULT_TOPIC : topic
     const currentOrganizationName = () => organizationName == null ? DEFAULT_ORGANIZATION_NAME : organizationName
 
 
     if (!fetched) {
-       
+       console.log(current_organization(), current_topic(), "ASDASD")
         fetch(API_URL+'/extension/complete/', {
             method: 'POST',
             headers: {
@@ -35,6 +36,7 @@ let html = () => {
           .then(response => response.json())
           .then((data) => {
             setTemplates(data.templates,  renderize=false);
+            console.log(data.templates, "ESTEMPA")
             return fetch(API_URL+`/v1/finetuning/completions/list/?token=${token}&total=True`);
           })
           .then(response => response.json())
@@ -43,9 +45,6 @@ let html = () => {
             localStorage.setItem('pendingCompletions', data)
             setFetched(true);
           })
-          .catch(error => {
-            console.error('An error occurred: ', error);
-          });
           
   
     }
@@ -76,7 +75,7 @@ let html = () => {
         <div><small>${item.variables} variables</small><i class="fa-solid fa-circle-info information-icon"></i>
         <div class="info-modal">${item.description}</div></div>
         </a>`
-        )}
+        ).join("")}
         
         </main>
         <footer>

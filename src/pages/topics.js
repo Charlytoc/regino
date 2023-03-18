@@ -15,6 +15,7 @@ let html = () => {
         window.location.href = 'templates.html'
     }
     if (!fetched) {
+
         fetch(API_URL+'/extension/complete/', {
             method: 'POST',
             headers: {
@@ -37,7 +38,6 @@ let html = () => {
     actions.chooseTopic = (e) => {
         if (selectedTopic != 0) {
             localStorage.setItem('topic', selectedTopic)
-            console.log(selectedTopic)
             window.location.href = "templates.html"
         }
         else {

@@ -36,7 +36,7 @@ let html = () => {
         <path d="M1.59998 13.069L8.1714 7.17242L1.59998 1.27587" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         </div></a>`
-        )}
+        ).join("")}
         
         </main>
         <footer>
