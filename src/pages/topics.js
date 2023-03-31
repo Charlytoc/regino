@@ -10,12 +10,19 @@ let html = () => {
     const organizationName = localStorage.getItem('organizationName')
     const [error, setError] = useState('Error')
 
+    const DEFAULT_ORGANIZATION = 1
+    const DEFAULT_TOPIC = 0
+    const DEFAULT_ORGANIZATION_NAME = "4Geeks"
+
+    const current_organization = () => organization == null ? DEFAULT_ORGANIZATION : organization
+    const current_topic = () => topic == null ? DEFAULT_TOPIC : topic
+    const currentOrganizationName = () => organizationName == null ? DEFAULT_ORGANIZATION_NAME : organizationName
 
     if (localStorage.getItem('topic')) {
         window.location.href = 'templates.html'
     }
     if (!fetched) {
-
+        console.log(token, organization, null, "THIS ARE THE DATA")
         fetch(API_URL+'/extension/complete/', {
             method: 'POST',
             headers: {
@@ -23,7 +30,7 @@ let html = () => {
             },
             body: JSON.stringify({
                 token: token,
-                organization: organization,
+                organization: current_organization(),
                 topic: null
             })
           })

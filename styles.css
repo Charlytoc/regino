@@ -127,6 +127,8 @@ a.backwards.lighter {
     border-radius: 3px;
     color: rgb(0, 0, 0);
     font-weight: 700;
+    position: absolute;
+    z-index: 2;
  }
  .completions-toggle {
     display: inline-block;

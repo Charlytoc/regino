@@ -20,7 +20,7 @@ let html = () => {
 
 
     if (!fetched) {
-       console.log(current_organization(), current_topic(), "ASDASD")
+       console.log(current_organization(), current_topic(), "CURRENT ORG AND CURRENT TOPIC")
         fetch(API_URL+'/extension/complete/', {
             method: 'POST',
             headers: {
@@ -36,7 +36,6 @@ let html = () => {
           .then(response => response.json())
           .then((data) => {
             setTemplates(data.templates,  renderize=false);
-            console.log(data.templates, "ESTEMPA")
             return fetch(API_URL+`/v1/finetuning/completions/list/?token=${token}&total=True`);
           })
           .then(response => response.json())

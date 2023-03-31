@@ -17,7 +17,7 @@ let html = () => {
     const loginObject = {}
 
     actions.login = (e) => {
-        fetch(API_URL+'/v1/prompting/auth/', {
+        fetch(API_URL+'/v1/auth/login/', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -39,16 +39,25 @@ let html = () => {
           .then((data) =>{
             localStorage.setItem('name', data.name)
             localStorage.setItem('token', data.token)
+            localStorage.setItem('organization', data.organization.id)
+            localStorage.setItem('organizationName', data.organization.name)
             window.location.href = 'templates.html'
           } ).
           catch((error) => {
-            if (error.message.startsWith('4')) {
+            if (error.message.startsWith('401')) {
                 setError(`Please verify your email and password`);
                 const errorModal = document.querySelector(".error")
                 errorModal.style.animationPlayState = 'running';
             }
+            if (error.message.startsWith('400')) {
+                setError(`Please create an account first`);
+                const errorModal = document.querySelector(".error")
+                errorModal.style.animationPlayState = 'running';
+            }
             else {
-                setError(`An unexpected error ocurred, status code: ${error}`)
+                setError(`Please verify your password. ${error}`)
+                const errorModal = document.querySelector(".error")
+                errorModal.style.animationPlayState = 'running';
             }
           })
     }
