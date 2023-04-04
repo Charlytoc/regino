@@ -22,7 +22,7 @@ let html = () => {
         window.location.href = 'templates.html'
     }
     if (!fetched) {
-        console.log(token, organization, null, "THIS ARE THE DATA")
+        console.log(token, organization, "ORG", null, 'topic', "THIS ARE THE DATA")
         fetch(API_URL+'/extension/complete/', {
             method: 'POST',
             headers: {
@@ -36,7 +36,8 @@ let html = () => {
           })
           .then(response => response.json())
           .then((data) =>{
-            setTopics(data.topics,  renderize=false);
+            console.log(data, "THIS ARE THE RESPONSe")
+            setTopics(data.purposes,  renderize=false);
             setFetched(true)
           } )
     }
@@ -62,9 +63,9 @@ let html = () => {
     return `<div class="topics">
         <header class="header"><a>Get help from Rigo</a><a href="train.html">Teach rigo<span class="completions-toggle">${pendingCompletions}</span></a></header>
         <main>
-        <h1>Filter help options by topic</h1>
+        <h1>Filter help options by purpose</h1>
         <select id="topics-select">
-        <option value="0" selected>Select or type a topic</option>
+        <option value="0" selected>Select or type a purpose</option>
         ${topics.map((item) => `<option ${isSelected(item.id)} value=${item.id}>${item.name}</option>`)}
         </select>
         <button id="choose-topic">Show templates</button>

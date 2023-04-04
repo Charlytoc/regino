@@ -1,11 +1,11 @@
 .generate{
-    height: 105%;
-    overflow-y: scroll;
+    height: 100%;
  }
 
  .generate > main {
     padding: var(--standard-padding);
-    margin-bottom: 40px;
+    overflow-y: auto;
+    height: 80%;
  }
  .generate > main > *:not(:first-child, h2, .small){
     margin-top: 0px;

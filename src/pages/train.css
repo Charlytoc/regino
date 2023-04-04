@@ -3,10 +3,12 @@
  }
  .train > main {
     padding: var(--standard-padding);
+    height: 80%;
  }
  .train > main > * {
     margin-top: 10px;
     font-size: 14px;
+    
  }
  .train > main > h2 {
     font-weight: 700;

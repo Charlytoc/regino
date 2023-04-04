@@ -17,7 +17,8 @@ let html = () => {
     const loginObject = {}
 
     actions.login = (e) => {
-        fetch(API_URL+'/v1/auth/login/', {
+        // fetch(API_URL+'/v1/auth/login/', { THIS IS THE NEW ONE
+        fetch(API_URL+'/v1/prompting/auth/', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'

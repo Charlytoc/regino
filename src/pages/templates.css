@@ -1,13 +1,15 @@
 .templates{
     height: 100%;
-    overflow-y: scroll;
 
  }
  .templates > main {
     padding: var(--standard-padding);
-    margin-bottom: 40px;
+    overflow-y: auto;
+    height: 80%;
 
  }
+
+
  .templates > main > a:first-child {
     margin-bottom: 5px;
     display: block;
