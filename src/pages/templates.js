@@ -62,7 +62,6 @@ let html = () => {
     }
     actions.goToHistory = (e) => {
       let templateId = e.currentTarget.getAttribute('data-template-id')
-      console.log(templateId, e.currentTarget)
       chrome.tabs.create({url: `${API_URL}/view/complete/history?token=${token}&template=${templateId}`});
 
     }
@@ -106,10 +105,10 @@ let html = () => {
 }
 
 document.addEventListener("render", ()=>{
-    // const templateContainers = document.querySelectorAll(".template-container");
-    // templateContainers.forEach((container) => {
-    //     container.addEventListener('click', actions.selectTemplate);
-    // });
+    const templateContainers = document.querySelectorAll(".template-container");
+    templateContainers.forEach((container) => {
+        container.addEventListener('click', actions.selectTemplate);
+    });
     document.querySelector("#go-to-topics").addEventListener('click', actions.goToTopics)
     document.querySelector("#switch-organization").addEventListener('click', actions.switchToOrganization)
     document.querySelector("#logout-button").addEventListener('click', actions.logout)

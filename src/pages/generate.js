@@ -48,7 +48,8 @@ let html = () => {
             },
             body: JSON.stringify({
                 inputs: inputsObject,
-                extension: true
+                extension: true,
+                token: token
             })
           })
           .then(response => response.json())
