@@ -60,6 +60,12 @@ let html = () => {
         localStorage.removeItem('topic')
         window.location.href = 'topics.html'
     }
+    actions.goToHistory = (e) => {
+      let templateId = e.currentTarget.getAttribute('data-template-id')
+      console.log(templateId, e.currentTarget)
+      chrome.tabs.create({url: `${API_URL}/view/complete/history?token=${token}&template=${templateId}`});
+
+    }
 
     return `<div class="templates">
         <header class="header"><a>Get help from Rigo</a><a href="train.html">Teach Rigo<span class="completions-toggle">${pendingCompletions}</span> </a></header>
@@ -71,8 +77,14 @@ let html = () => {
 
         Filter help options</a>
         ${templates.map((item) => `<a data-template=${item.id} class="template-container"><h2>${item.name}</h2>
-        <div><small>${item.variables} variables</small><i class="fa-solid fa-circle-info information-icon"></i>
-        <div class="info-modal">${item.description}</div></div>
+        
+        <div><small>${item.variables} variables</small><div class="svg-container"><i data-template-id=${item.id} class="fa-solid fa-list history-icon"></i>
+        <div  class="info-history-modal">Go to the completion history</div>
+        <i class="fa-solid fa-circle-info information-icon"></i>
+        <div  class="info-modal">${item.description}</div>
+        
+        </div>
+        </div>
         </a>`
         ).join("")}
         
@@ -94,12 +106,13 @@ let html = () => {
 }
 
 document.addEventListener("render", ()=>{
-    const templateContainers = document.querySelectorAll(".template-container");
-    templateContainers.forEach((container) => {
-        container.addEventListener('click', actions.selectTemplate);
-    });
+    // const templateContainers = document.querySelectorAll(".template-container");
+    // templateContainers.forEach((container) => {
+    //     container.addEventListener('click', actions.selectTemplate);
+    // });
     document.querySelector("#go-to-topics").addEventListener('click', actions.goToTopics)
     document.querySelector("#switch-organization").addEventListener('click', actions.switchToOrganization)
     document.querySelector("#logout-button").addEventListener('click', actions.logout)
+    document.querySelector(".history-icon").addEventListener('click', actions.goToHistory)
 })
 
