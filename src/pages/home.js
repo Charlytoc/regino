@@ -16,9 +16,13 @@ let html = () => {
     }
     const loginObject = {}
 
+    actions.forgotPassword = () => {
+        chrome.tabs.create({url: `https://breathecode.herokuapp.com/v1/auth/password/reset?url=https://4geeks.com/login`});
+    }
+
     actions.login = (e) => {
         // fetch(API_URL+'/v1/auth/login/', { THIS IS THE NEW ONE
-        fetch(API_URL+'/v1/prompting/auth/', {
+        fetch(API_URL+'/v1/auth/login/', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -73,7 +77,7 @@ let html = () => {
     <button id="login-button">Login</button>
     <div class="error">${error}</div>
     <div class="signup">
-    <a href="forgot.html" class="backwards ">Forgot password?</a>
+    <a id="forgot-password" class="backwards">Forgot password?</a>
     <p>Don't have an account? <a class="backwards " href="signup.html"> Sign up here </a></p>
     </div>
     </div>
@@ -84,5 +88,6 @@ document.addEventListener("render", ()=>{
     document.querySelector("#email-input").addEventListener('keyup', actions.handleEmailChange);
     document.querySelector("#password-input").addEventListener('change', actions.handlePasswordChange);
     document.querySelector("#login-button").addEventListener('click', actions.login);
+    document.querySelector("#forgot-password").addEventListener('click', actions.forgotPassword);
 
 })
