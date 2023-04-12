@@ -3,7 +3,7 @@ let currentRefCount = 0;
 window.actions = {};
 
 // const API_URL = 'https://rigobot.herokuapp.com'
-const API_URL = 'https://8000-charlytoc-rigobot-hgyu2adc710.ws-us93.gitpod.io'
+const API_URL = 'https://charlytoc-reimagined-pancake-5jvgrvrw9w4h769j-8000.preview.app.github.dev'
 
 
 

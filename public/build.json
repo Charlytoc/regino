@@ -1,6 +1,10 @@
 {
   "pages": [
     {
+      "name": "bookmark",
+      "hasStyles": true
+    },
+    {
       "name": "forgot",
       "hasStyles": true
     },
