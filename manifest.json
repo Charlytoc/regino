@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Rigobot GPT",
-  "description": "Create your own AI, name it, traing it have it help you and your team for the rest of your life!",
-  "version": "0.0.1",
+  "description": "Create your own GPT bot, traing it with your own data and use it to generate text for your organization.",
+  "version": "1.0.6",
   "action": {
     "default_popup": "home.html",
     "default_icon": "icon.png"
@@ -14,13 +14,9 @@
     "128": "src/assets/icon-128.png"
   },
   "permissions": [
-    "storage",
-    "tabs"
+    "storage"
   ],
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self' ; script-src-elem 'self' 'unsafe-inline'"
-  },
-  "externally_connectable": {
-    "ids": ["kljkjnedpomakhmdcmdlpmeolbkgoblc"]
   }
 }

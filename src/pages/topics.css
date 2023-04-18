@@ -3,6 +3,7 @@
  }
  .topics > main {
     padding: 10px;
+    height: 80%;
  }
  .topics > main > *:not(:first-child){
     margin-top: 10px;

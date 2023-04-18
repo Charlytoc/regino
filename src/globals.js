@@ -14,3 +14,4 @@ const logout = () => {
     window.location.href = "home.html"
 }
 actions.logout = logout
+

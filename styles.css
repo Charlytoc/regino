@@ -12,6 +12,8 @@ body {
     width: 325px;
     height: 430px;
     font-family: 'Lato', sans-serif;
+    overflow-y: hidden;
+    /* background-color: #2F80ED; */
 }
 #root {
     width: 100%;
@@ -48,13 +50,15 @@ footer {
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 70px;
-    position: fixed;
+    position: sticky;
     bottom: 0;
+    background-color: white;
+    /* margin-top: 40px; */
     justify-content: space-between;
     align-items: center;
     padding: var(--standard-padding);
-    
 }
+
 footer > div:first-child {
     display: flex;
     justify-content: left;
@@ -77,12 +81,96 @@ footer > div:last-child button {
 footer > div > div >div {
     display: flex;
     gap: 10px;
+    align-items: center;
 }
 footer > div > div > div > button {
     background-color: white;
     border: 0;
     color: var(--color-one);
+    display: flex;
+    align-items: center;
 }
 footer > div  img {
     height: 25px;
 }
+
+a.backwards.lighter {
+    color: black;
+    opacity: 0.8;
+    text-decoration: none;
+ }
+ a.backwards {
+    color: rgba(0, 0, 0, 0.596);
+    display: inline-block;
+    opacity: 0.8;
+ }
+
+ a.backwards.right:hover {
+    transform: translateX(5px) !important;
+    transition: all 0.2s;
+ }
+ a.backwards.left:hover {
+    transform: translateX(-5px) !important;
+    transition: all 0.2s;
+ }
+ a.backwards:hover {
+    opacity: 1;
+    cursor: pointer;
+    color: var(--color-one);
+    scale: 1.02;
+    transition: all 0.2s;
+ }
+
+ .error {
+    transform: translateX(500px);
+    animation: downup 5s ease-in-out 1;
+    animation-play-state: paused;
+    background-color: #cbcbcb;
+    padding: var(--standard-padding);
+    border-radius: 3px;
+    color: rgb(0, 0, 0);
+    font-weight: 700;
+    position: absolute;
+    z-index: 2;
+ }
+ .completions-toggle {
+    display: inline-block;
+    background-color: #EB5757;
+    padding: 3px 6px;
+    margin-left: 3px;
+    color: white;
+    border-radius: 4px;
+ }
+ @keyframes downup {
+    0%{
+       transform: translateX(500px);
+       display: block;
+    }
+    15%{
+       transform: translateX(0px);
+    }
+    85%{
+       transform: translateX(0px);
+    }
+    100%{
+       display: none;
+       transform: translateX(500px);
+       animation-play-state: paused;
+    }
+ }
+
+ ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    background: transparent
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #E0E0E0;
+    border-radius: 10px;
+
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: gray
+  }

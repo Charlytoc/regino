@@ -19,7 +19,7 @@ let html = () => {
         localStorage.setItem('organization', selectedOrganization)
         localStorage.setItem('organizationName', organizationName)
         if (selectedOrganization != 0) {
-            window.location.href = "topics.html"
+            window.location.href = "templates.html"
         }
         
     }
@@ -46,7 +46,7 @@ let html = () => {
     return `<div class="organizations">
         <div>
         <h1>Hi, ${name}</h1>
-        <p>Please choose and organization</p>
+        <p>Please choose an organization</p>
         <select id="organizations-select">
         <option value="0" selected>Select or type an organization</option>
         ${organizations.map((item, index) => `<option ${isSelected(item.id)} value=${item.id}>${item.name}</option>`)}
