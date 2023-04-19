@@ -7,7 +7,7 @@ let html = () => {
     const topic = localStorage.getItem('topic')
 
     const DEFAULT_ORGANIZATION = 1
-    const DEFAULT_TOPIC = 0
+    const DEFAULT_TOPIC = 'all'
     const DEFAULT_ORGANIZATION_NAME = "4Geeks"
 
     const [fetched, setFetched] = useState(false)
@@ -20,7 +20,6 @@ let html = () => {
 
 
     if (!fetched) {
-       console.log(current_organization(), current_topic(), "CURRENT ORG AND CURRENT TOPIC")
         fetch(API_URL+'/extension/complete/', {
             method: 'POST',
             headers: {

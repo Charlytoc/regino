@@ -37,7 +37,8 @@ let html = () => {
         </svg>
         </div></a>`
         ).join("")}
-        <a href="bookmark.html">Bookmark website</a>
+        <a class="pill" href="bookmark.html">Bookmark website</a>
+        <a  class="pill" href="addRepo.html">Create code revisions</a>
         </main>
         <footer>
         <div>

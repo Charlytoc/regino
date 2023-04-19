@@ -1,6 +1,10 @@
 {
   "pages": [
     {
+      "name": "addRepo",
+      "hasStyles": true
+    },
+    {
       "name": "bookmark",
       "hasStyles": true
     },
@@ -13,11 +17,11 @@
       "hasStyles": true
     },
     {
-      "name": "home",
+      "name": "organizations",
       "hasStyles": true
     },
     {
-      "name": "organizations",
+      "name": "home",
       "hasStyles": true
     },
     {
