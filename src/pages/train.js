@@ -11,8 +11,6 @@ let html = () => {
         fetch(API_URL+`/v1/finetuning/completions/list/?token=${token}`)
           .then(response => response.json())
           .then((data) =>{
-   
-            console.log(data)
             setQuestions(data,  renderize=false);
             setFetched(true)
  } )
@@ -22,14 +20,14 @@ let html = () => {
     actions.answerQuestions = (e) => {
         e.preventDefault();
         const topic =  e.currentTarget.getAttribute('data-topic')
-        chrome.tabs.create({url: `${API_URL}/view/answer/completion?token=${token}&topic=${topic}`});
+        chrome.tabs.create({url: `${API_URL}/view/answer/completion?token=${token}&purpose=${topic}`});
     }
     return `<div class="train">
         <header class="header train-header"><a href="templates.html">Get help from Rigo</a><a>Teach Rigo</a></header>
         <main>
         <h2>There are some trainings that require your expertise, please answer questions for:</h2>
         ${questions.map((item) => `
-        <a class="questions-container" data-topic=${item.purpose_id}><div>${item.completions} questions for ${item.topic}</div><div><svg width="10" height="15" viewBox="0 0 10 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <a class="questions-container" data-topic=${item.id}><div>${item.completions} questions for ${item.name}</div><div><svg width="10" height="15" viewBox="0 0 10 15" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M1.59998 13.069L8.1714 7.17242L1.59998 1.27587" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         <svg width="10" height="15" viewBox="0 0 10 15" fill="none" xmlns="http://www.w3.org/2000/svg">

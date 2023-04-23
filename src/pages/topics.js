@@ -66,7 +66,7 @@ let html = () => {
         <h1>Filter help options by purpose</h1>
         <select id="topics-select">
         <option value="0" selected>Select or type a purpose</option>
-        <option value="all" ${isSelected('all')}>All purposes</option>
+        <option value="all" ${isSelected('all')}>All organization templates</option>
         ${topics.map((item) => `<option ${isSelected(item.id)} value=${item.id}>${item.name}</option>`)}
         </select>
         <button id="choose-topic">Show templates</button>

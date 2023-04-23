@@ -64,7 +64,7 @@ let html = () => {
         <div><h2>Fill the repository info</h2>
     <input  id="repo-url" placeholder="Repository url" type="text" />
     <input  id="commits" placeholder="How many commits you want to review" type="number" />
-    <button id="login-button">Bookmark website</button>
+    <button id="login-button">Submit repo for revisions</button>
     <div><svg width="12" height="12" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M14 9L4 18L14 27" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     <path d="M26 9L16 18L26 27" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
