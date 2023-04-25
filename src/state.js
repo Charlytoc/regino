@@ -2,8 +2,8 @@ window.stateValues = []
 let currentRefCount = 0;
 window.actions = {};
 
-// const API_URL = 'https://rigobot.herokuapp.com'
-const API_URL = 'https://8000-charlytoc-rigobot-8m9q9nxorkq.ws-us95.gitpod.io'
+const API_URL = 'https://rigobot.herokuapp.com'
+// const API_URL = 'https://8000-charlytoc-rigobot-8m9q9nxorkq.ws-us95.gitpod.io'
 
 
 
