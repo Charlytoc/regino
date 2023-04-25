@@ -1,11 +1,15 @@
 name: Create Zip File
-on: [push]
+on:
+  push:
+    branches:
+      - master
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: action-build-zip
+      - name: Checkout code
+        uses: actions/checkout@v2
       - name: Generate ZIP
-        uses: byteever/action-build-zip@1
+        uses: montudor/action-zip@v1
         with:
-          filename: 'dist/release.zip'
+          args: zip -r dist/release.zip .
