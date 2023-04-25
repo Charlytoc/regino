@@ -69,7 +69,7 @@ let html = () => {
         <option value="all" ${isSelected('all')}>All organization templates</option>
         ${topics.map((item) => `<option ${isSelected(item.id)} value=${item.id}>${item.name}</option>`)}
         </select>
-        <button id="choose-topic">Show templates</button>
+        <button id="choose-topic">Apply filters</button>
         <div class="error">${error}</div>
         </main>
 

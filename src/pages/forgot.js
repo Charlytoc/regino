@@ -8,7 +8,7 @@ let html = () => {
     
 
     actions.reset = (e) => {
-        console.log(email)
+        // console.log(email)
         window.location.href ="thanks.html"
     }
 

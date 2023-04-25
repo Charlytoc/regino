@@ -15,3 +15,5 @@ const logout = () => {
 }
 actions.logout = logout
 
+// I'm gonna define here my requests function to have more control of my code
+
