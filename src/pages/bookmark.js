@@ -1,10 +1,24 @@
 // Must be called html
+let footerComponent = (name, organizationName) => `<footer>
+<div>
+<img src="rigo-icon.png"/>
+<div><p>${name}</p><div><p>${organizationName}</p><button id="switch-organization">
+<svg width="12" height="12" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M14 9L4 18L14 27" stroke="#2F80ED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M26 9L16 18L26 27" stroke="#2F80ED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+switch</button></div></div>
+</div>
+<div>
+<button id="logout-button">Logout</button></div>
+</footer>`
 let html = () => {
     const token = localStorage.getItem('token');
     const [error, setError] = useState('Error')
     const [fetched, setFetched] = useState(false)
     const [purposes, setPurposes] = useState([])
-
+    const name = localStorage.getItem('name');
+    const organizationName = localStorage.getItem('organizationName');
     const websiteObject = {
         purposes: []
     }
@@ -77,9 +91,12 @@ let html = () => {
         
     return `<div class="bookmark">
     <header class="header train-header"><a href="templates.html">Get help from Rigo</a><a>Teach Rigo</a></header>
-        <div><h2>Fill the website info</h2>
+    <main>
+    <h2>Bookmark websites</h2>
+    <p>As team expert, you can bookmark websites and Rigo will read and learn from them. As Rigo gets smarter it will be a better companion for your team.</p>
     <input  id="website-name" placeholder="Website name" type="text" />
     <input  id="website-link" placeholder="Website URL" type="text" />
+    <span>Select the purposes you want to add the website</span>
     <section id="inputs-pairs">
     ${purposes.map((item, index) => `<div><span>${item.name}</span><input class="purpose-input" type="checkbox" value=${item.id} /></div>`).join(" ")}
     </section>
@@ -91,7 +108,8 @@ let html = () => {
     <div class="error">${error}</div>
     <a class="backwards right lighter" href="train.html">Back</a></div>
 
-    </div>
+    </main>
+    ${footerComponent(name, organizationName)}
     </div>`;
 }
 

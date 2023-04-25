@@ -45,7 +45,7 @@ let html = () => {
                 errorModal.style.animationPlayState = 'running';
             }
             if (error.message.startsWith('401')) {
-                setError(`You are an active user, but your password didn't match`);
+                setError(`You are an active user, but your password didn't match`);codeReviews.html
                 const errorModal = document.querySelector(".error")
                 errorModal.style.animationPlayState = 'running';
             }
@@ -59,7 +59,7 @@ let html = () => {
 
 
         
-    return `<div class="signup">
+    return `<div class="add-repo">
     <header class="header train-header"><a href="templates.html">Get help from Rigo</a><a>Teach Rigo</a></header>
         <div><h2>Fill the repository info</h2>
     <input  id="repo-url" placeholder="Repository url" type="text" />
