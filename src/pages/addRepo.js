@@ -1,8 +1,22 @@
 // Must be called html
+let footerComponent = (name, organizationName) => `<footer>
+<div>
+<img src="rigo-icon.png"/>
+<div><p>${name}</p><div><p>${organizationName}</p><button id="switch-organization">
+<svg width="12" height="12" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M14 9L4 18L14 27" stroke="#2F80ED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M26 9L16 18L26 27" stroke="#2F80ED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+switch</button></div></div>
+</div>
+<div>
+<button id="logout-button">Logout</button></div>
+</footer>`
 let html = () => {
     const token = localStorage.getItem('token');
     const [error, setError] = useState('Error')
-
+    const name = localStorage.getItem('name');
+    const organizationName = localStorage.getItem('organizationName');
 
     const repoObject = {
     }
@@ -61,18 +75,25 @@ let html = () => {
         
     return `<div class="add-repo">
     <header class="header train-header"><a href="templates.html">Get help from Rigo</a><a>Teach Rigo</a></header>
-        <div><h2>Fill the repository info</h2>
-    <input  id="repo-url" placeholder="Repository url" type="text" />
-    <input  id="commits" placeholder="How many commits you want to review" type="number" />
-    <button id="login-button">Submit repo for revisions</button>
-    <div><svg width="12" height="12" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M14 9L4 18L14 27" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M26 9L16 18L26 27" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    <div class="error">${error}</div>
-    <a class="backwards right lighter" href="train.html">Back</a></div>
+    <main>
+        <h2>Code reviews (coming soon)</h2>
+        <p>As team expert, you can provide feedback on code and Rigo will become a better coder.</p>
+        <h3>Submit a repo for code reviews</h3>
+        <input  id="repo-url" placeholder="Repository url" type="text" />
+        <input  id="commits" placeholder="How many commits you want to review" type="number" />
+        <button id="login-button">Submit repo for revisions</button>
+        <span>This feature is currently supported only on github.com.</span>
+        <div>
+            <svg width="12" height="12" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 9L4 18L14 27" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M26 9L16 18L26 27" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div class="error">${error}</div>
+            <a class="backwards right lighter" href="train.html">Back</a>
+        </div>
 
-    </div>
+    </main>
+    ${footerComponent(name, organizationName)}
     </div>`;
 }
 

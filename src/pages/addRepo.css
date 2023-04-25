@@ -2,23 +2,23 @@
    Important! The component class name always have to be lowercase 
    and it has to match the js and css file names 
 */
-.bookmark{
+.add-repo{
    margin: 0 auto;
    height: 100%;
 }
-.bookmark > main {
+.add-repo > main {
   padding: var(--standard-padding);
    text-align: left;
    height: 80%;
 }
- .bookmark > main > input, button {
+ .add-repo > main > input, button:not(#logout-button) {
    padding: 10px;
    width: 100%;
  }
- .bookmark > main > * {
+ .add-repo > main > * {
    margin-bottom: 8px;
  }
- .bookmark > main > button {
+ .add-repo > main > button {
    width: 100%;
    background-color: var(--color-one);
    color: white;
@@ -26,7 +26,7 @@
    border-radius: 3px;
    border: 0;
 }
-.bookmark > main > div {
+.add-repo > main > div {
    display: flex;
    align-items: center;
    justify-content: left;

@@ -11,7 +11,7 @@
     text-align: left;
     height: 80%;
  }
-  .documents > main > input, button {
+  .documents > main > input, button:not(#logout-button) {
     padding: 10px;
     width: 100%;
   }

@@ -88,6 +88,7 @@ footer > div > div > div > button {
     color: var(--color-one);
     display: flex !important;
     align-items: center;
+    background-color: #ffffff;
 }
 footer > div  img {
     height: 25px;
