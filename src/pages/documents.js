@@ -25,13 +25,14 @@ let html = () => {
     <header class="header train-header"><a href="templates.html">Get help from Rigo</a><a>Teach Rigo</a></header>
         <main>
         <h2>Bookmark documents</h2>
+        <div>
+        <svg width="12" height="12" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M14 9L4 18L14 27" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M26 9L16 18L26 27" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="error">${error}</div>
+        <a class="backwards right lighter" href="train.html">Back</a></div>
         <p>As team expert, you can bookmark or upload documents and Rigo will read and learn from them. As Rigo gets smarter it will be a better companion for your team.</p>
-    <div><svg width="12" height="12" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M14 9L4 18L14 27" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M26 9L16 18L26 27" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    <div class="error">${error}</div>
-    <a class="backwards right lighter" href="train.html">Back</a></div>
 
     </main>
     ${footerComponent(name, organizationName)}

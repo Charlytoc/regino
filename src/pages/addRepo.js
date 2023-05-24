@@ -25,12 +25,17 @@ let html = () => {
         repoObject.repo_url = e.target.value
     }
     actions.handleCommits = (e) => {
-        console.log(e.target.value)
         repoObject.how_many_commits = e.target.value
+    }
+    actions.handleWatchers = (e) => {
+
+        repoObject.watchers = e.target.value
+    }
+    actions.handleGithubToken = (e) => {
+        repoObject.github_token = e.target.value
     }
 
     actions.login = (e) => {
-        console.log(repoObject)
         fetch(`${API_URL}/v1/finetuning/review/repo/`, {
             method: 'POST',
             headers: {
@@ -76,13 +81,7 @@ let html = () => {
     return `<div class="add-repo">
     <header class="header train-header"><a href="templates.html">Get help from Rigo</a><a>Teach Rigo</a></header>
     <main>
-        <h2>Code reviews (coming soon)</h2>
-        <p>As team expert, you can provide feedback on code and Rigo will become a better coder.</p>
-        <h3>Submit a repo for code reviews</h3>
-        <input  id="repo-url" placeholder="Repository url" type="text" />
-        <input  id="commits" placeholder="How many commits you want to review" type="number" />
-        <button id="login-button">Submit repo for revisions</button>
-        <span>This feature is currently supported only on github.com.</span>
+        <h2>Code reviews</h2>
         <div>
             <svg width="12" height="12" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M14 9L4 18L14 27" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -91,6 +90,14 @@ let html = () => {
             <div class="error">${error}</div>
             <a class="backwards right lighter" href="train.html">Back</a>
         </div>
+        <p>As team expert, you can provide feedback on code and Rigo will become a better coder.</p>
+        <h3>Submit a repo for code reviews</h3>
+        <input  id="repo-url" placeholder="Repository url" type="text" />
+        <input  id="commits" placeholder="How many commits you want to review" type="number" />
+        <input  id="watchers" placeholder="Comma separated GitHub username of watchers" type="text" />
+        <input  id="github_token" placeholder="Github token with repo permissions" type="text" />
+        <button id="login-button">Submit repo for revisions</button>
+        <span>This feature is currently supported only on github.com.</span>
 
     </main>
     ${footerComponent(name, organizationName)}
@@ -101,6 +108,8 @@ document.addEventListener("render", ()=>{
 
     document.querySelector("#repo-url").addEventListener('keyup', actions.handleName);
     document.querySelector("#commits").addEventListener('change', actions.handleCommits);
+    document.querySelector("#watchers").addEventListener('change', actions.handleWatchers);
+    document.querySelector("#github_token").addEventListener('change', actions.handleGithubToken);
 
     document.querySelector("#login-button").addEventListener('click', actions.login);
 

@@ -10,8 +10,9 @@
     font-size: 14px;
     
  }
- .answer > main > h2 {
+ .answer > main > h1 {
     font-weight: 700;
+    font-size: 17px;
  }
 
  .questions-container {
