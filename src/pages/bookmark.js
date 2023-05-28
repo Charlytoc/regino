@@ -23,6 +23,8 @@ let html = () => {
         purposes: []
     }
     
+
+
     actions.handleName = (e) => {
         websiteObject.name = e.target.value
     }
@@ -101,7 +103,7 @@ let html = () => {
     </div>
     <p>As team expert, you can bookmark websites and Rigo will read and learn from them. As Rigo gets smarter it will be a better companion for your team.</p>
     <input  id="website-name" placeholder="Website name" type="text" />
-    <input  id="website-link" placeholder="Website URL" type="text" />
+    <input  id="website-link" placeholder="Website URL" type="text"/>
     <span>Select the purposes you want to add the website</span>
     <section id="inputs-pairs">
     ${purposes.map((item, index) => `<div><span>${item.name}</span><input class="purpose-input" type="checkbox" value=${item.id} /></div>`).join(" ")}

@@ -60,7 +60,7 @@ let html = () => {
     } )
     }
     const retrieveUserStatus = () => {
-        fetch(API_URL+`/v1/auth/user/status?token=${token}`)
+        fetch(API_URL+`/v1/auth/user/role?token=${token}`)
         .then(response => response.json())
         .then((data) =>{
      

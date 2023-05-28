@@ -2,7 +2,7 @@
 let html = () => {
     const [fetched, setFetched] = useState(false)
     const [topics, setTopics] = useState([])
-    const [selectedTopic, setSelectedTopic] = useState('all')
+    const [selectedTopic, setSelectedTopic] = useState(0)
     const token = localStorage.getItem('token');
     const name = localStorage.getItem('name')
     const pendingCompletions = localStorage.getItem('pendingCompletions')
@@ -11,48 +11,45 @@ let html = () => {
     const [error, setError] = useState('Error')
 
     const DEFAULT_ORGANIZATION = 1
-    const DEFAULT_TOPIC = 0
+    const SELECTED_PURPOSE = 0
     const DEFAULT_ORGANIZATION_NAME = "4Geeks"
 
     const current_organization = () => organization == null ? DEFAULT_ORGANIZATION : organization
     const current_topic = () => topic == null ? DEFAULT_TOPIC : topic
     const currentOrganizationName = () => organizationName == null ? DEFAULT_ORGANIZATION_NAME : organizationName
 
-    if (localStorage.getItem('topic')) {
+    if (localStorage.getItem('SELECTED_PURPOSE')) {
         window.location.href = 'templates.html'
     }
+    
     if (!fetched) {
-        console.log(token, organization, "ORG", null, 'topic', "THIS ARE THE DATA")
-        fetch(API_URL+'/extension/complete/', {
-            method: 'POST',
+        fetch(API_URL+'/v1/finetuning/purposes/', {
+            method: 'GET',
             headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                token: token,
-                organization: current_organization(),
-                topic: null
-            })
+              'Content-Type': 'application/json',
+              'Authorization': 'Token '+token
+            }
           })
           .then(response => response.json())
           .then((data) =>{
-            console.log(data, "THIS ARE THE RESPONSe")
-            setTopics(data.purposes,  renderize=false);
+            setTopics(data,  renderize=false);
             setFetched(true)
           } )
     }
     const isSelected = (id) => id == selectedTopic || id == 'all' ? 'selected' : 'null'
 
     actions.chooseTopic = (e) => {
-        if (selectedTopic != 0) {
-            localStorage.setItem('topic', selectedTopic)
-            window.location.href = "templates.html"
-        }
-        else {
-            setError(`Please choose a topic`);
-            const errorModal = document.querySelector(".error")
-            errorModal.style.animationPlayState = 'running';
-        }
+        localStorage.setItem('SELECTED_PURPOSE', selectedTopic)
+        window.location.href = "templates.html"
+        // if (selectedTopic != 0) {
+        //     localStorage.setItem('SELECTED_PURPOSE', selectedTopic)
+        //     window.location.href = "templates.html"
+        // }
+        // else {
+        //     setError(`Please choose a topic`);
+        //     const errorModal = document.querySelector(".error")
+        //     errorModal.style.animationPlayState = 'running';
+        // }
         
     }
 
@@ -65,8 +62,7 @@ let html = () => {
         <main>
         <h1>Filter help options by purpose</h1>
         <select id="topics-select">
-        <option value="0" selected>Select or type a purpose</option>
-        <option value="all" ${isSelected('all')}>All organization templates</option>
+        <option value=0 ${isSelected(0)}>All organization templates</option>
         ${topics.map((item) => `<option ${isSelected(item.id)} value=${item.id}>${item.name}</option>`)}
         </select>
         <button id="choose-topic">Apply filters</button>

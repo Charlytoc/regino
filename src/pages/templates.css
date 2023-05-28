@@ -32,6 +32,7 @@
     border-radius: 3px;
     padding: var(--standard-padding);
     margin-top: 5px;
+    
 }
 .template-container > *:not(:last-child) {
     margin-bottom: 10px;
@@ -44,6 +45,10 @@
 }
 .template-container h2 {
     font-size: 12px;
+    >span.tag {
+        color: var(--color-one);
+        border: 1px solid var(--color-one-opaque);
+    }
 }
 .template-container small {
     display: inline-block;
@@ -78,6 +83,7 @@ div.info-modal {
 
 .information-icon:hover + .info-modal {
 display: block;
+z-index: 6 !important;
 }
 
 
@@ -97,6 +103,7 @@ display: block;
 }
 .info-modal {
     font-size: 11px;
+    
 }
 .info-history-modal {
     display: none !important;
@@ -110,6 +117,7 @@ display: block;
     border: 1px solid rgb(147, 147, 147);
     border-radius: 10px;
     font-size: 11px;
+    
 }
 
 .info-history-modal:hover {

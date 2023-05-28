@@ -5,28 +5,24 @@ let html = () => {
     const organization = localStorage.getItem('organization')
     const organizationName = localStorage.getItem('organizationName')
     const topic = localStorage.getItem('topic')
-    const template_id = localStorage.getItem('template')
+    const template_id = localStorage.getItem('TEMPLATE')
     const pendingCompletions = localStorage.getItem('pendingCompletions')
     const [fetched, setFetched] = useState(false)
     const [template, setTemplate] = useState([])
 
 
     if (!fetched) {
-        fetch(API_URL+'/extension/complete/', {
-            method: 'POST',
+        const request_url = API_URL+'/v1/prompting/templates/'+template_id
+        fetch(request_url, {
+            method: 'GET',
             headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                token: token,
-                organization: organization,
-                topic: topic,
-                template: template_id
-            })
+              'Content-Type': 'application/json',
+              'Authorization': 'Token '+token
+            }
           })
           .then(response => response.json())
           .then((data) =>{
-            setTemplate(data.template, renderize=false);
+            setTemplate(data, renderize=false);
             setFetched(true);
           } )
     }

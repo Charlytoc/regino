@@ -25,10 +25,9 @@ let html = () => {
         fetch(API_URL+'/v1/auth/login/', {
             method: 'POST',
             headers: {
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                extension: true,
                 username: loginObject.email,
                 password: loginObject.password
             })
