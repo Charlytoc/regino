@@ -21,7 +21,6 @@ let html = () => {
     }
 
     actions.login = (e) => {
-        // fetch(API_URL+'/v1/auth/login/', { THIS IS THE NEW ONE
         fetch(API_URL+'/v1/auth/login/', {
             method: 'POST',
             headers: {

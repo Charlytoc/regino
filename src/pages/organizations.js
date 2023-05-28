@@ -24,19 +24,17 @@ let html = () => {
         
     }
     if (!fetched) {
-        fetch(API_URL+'/extension/complete/', {
-            method: 'POST',
+        let requestUrl = API_URL+'/v1/auth/organization'
+        fetch(requestUrl, {
+            method: 'GET',
             headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                token: token,
-                organization: null
-            })
+              'Content-Type': 'application/json',
+              'Authorization': 'Token '+token
+            }
           })
           .then(response => response.json())
           .then((data) =>{
-            setOrganizations(data.organizations, renderize=false);
+            setOrganizations(data, renderize=false);
             setFetched(true);
           } )
     }

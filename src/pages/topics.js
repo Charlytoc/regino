@@ -36,7 +36,7 @@ let html = () => {
             setFetched(true)
           } )
     }
-    const isSelected = (id) => id == selectedTopic || id == 'all' ? 'selected' : 'null'
+    const isSelected = (id) => id == selectedTopic ? 'selected' : 'null'
 
     actions.chooseTopic = (e) => {
         localStorage.setItem('SELECTED_PURPOSE', selectedTopic)

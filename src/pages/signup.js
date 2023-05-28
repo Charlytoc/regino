@@ -33,7 +33,6 @@ let html = () => {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                extension: true,
                 username: loginObject.email,
                 password: loginObject.password
             })
