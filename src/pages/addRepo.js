@@ -22,25 +22,26 @@ let html = () => {
     }
     
     actions.handleName = (e) => {
-        repoObject.repo_url = e.target.value
+        repoObject.url = e.target.value
     }
     actions.handleCommits = (e) => {
-        repoObject.how_many_commits = e.target.value
+        repoObject.commits_for_review = e.target.value
     }
     actions.handleWatchers = (e) => {
 
         repoObject.watchers = e.target.value
     }
     actions.handleGithubToken = (e) => {
-        repoObject.github_token = e.target.value
+        repoObject.personal_access_token = e.target.value
     }
 
     actions.login = (e) => {
-        fetch(`${API_URL}/v1/finetuning/review/repo/`, {
+        const URL = `${API_URL}/v1/finetuning/me/repository/`
+        fetch(URL, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`
+              'Authorization': `Token ${token}`
             },
             body: JSON.stringify(repoObject)
           })
