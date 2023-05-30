@@ -37,20 +37,21 @@ let html = () => {
         buttonThinking.innerHTML = "Rigo is thinking..."
         buttonThinking.disabled = true;
         buttonThinking.classList.add('rigo-thinking');
-        fetch(`${API_URL}/v1/prompting/complete/?template_id=${template_id}`, {
+        fetch(`${API_URL}/v1/prompting/completion/${template_id}`, {
             method: 'POST',
             headers: {
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
+              'Authorization': 'Token '+token,
             },
             body: JSON.stringify({
                 inputs: inputsObject,
-                extension: true,
-                token: token
+                include_organization_brief: false
             })
           })
           .then(response => response.json())
           .then((data) =>{
-            chrome.tabs.create({url: `${API_URL}/view/complete/?completion=${data.completion}`});
+            chrome.tabs.create({url: `${API_URL}/view/complete/?completion=${data.id}`});
+            // console.log(data);
           } )
     }
     const inputsObject = {}
