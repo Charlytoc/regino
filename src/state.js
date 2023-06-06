@@ -3,7 +3,7 @@ let currentRefCount = 0;
 window.actions = {};
 
 // const API_URL = 'https://rigobot.herokuapp.com'
-const API_URL = 'https://8000-charlytoc-rigobot-y57xsui3a32.ws-us98.gitpod.io'
+const API_URL = 'https://8000-charlytoc-rigobot-oyrlzafp4v6.ws-us98.gitpod.io'
 
 
 

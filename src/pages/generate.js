@@ -10,7 +10,7 @@ let html = () => {
     const [fetched, setFetched] = useState(false)
     const [template, setTemplate] = useState([])
 
-
+    let includeOrganizationBrief = false
     if (!fetched) {
         const request_url = API_URL+'/v1/prompting/templates/'+template_id
         fetch(request_url, {
@@ -26,6 +26,12 @@ let html = () => {
             setFetched(true);
           } )
     }
+
+    actions.includeOrganizationCheckbox = (e) => {
+      includeOrganizationBrief =  includeOrganizationBrief ? false : true;
+      console.log(includeOrganizationBrief);
+    }
+
 
     actions.goToTemplates = (e) => {
         e.preventDefault();
@@ -45,7 +51,7 @@ let html = () => {
             },
             body: JSON.stringify({
                 inputs: inputsObject,
-                include_organization_brief: false
+                include_organization_brief: includeOrganizationBrief
             })
           })
           .then(response => response.json())
@@ -81,6 +87,10 @@ let html = () => {
         Ask for help in something else</a>
         <h2>${template.name}:</h2>
         ${returnInputs(template.variables)}
+        <div class="checkbox-container">
+        <input id="include-organization-checkbox" = name="include-organization" type="checkbox" />
+        <span class="small">Include organization brief</span>
+        </div>
         <button id="generate-button">Generate</button>
         <div class="modal-copied">Answer copied to clipboard!</div>
         </main>
@@ -109,4 +119,5 @@ document.addEventListener("render", ()=>{
     variableInputs.forEach((input) => input.addEventListener('keyup', actions.handleInput))
     document.querySelector("#switch-organization").addEventListener('click', actions.switchToOrganization)
     document.querySelector("#logout-button").addEventListener('click', actions.logout)
+    document.querySelector("#include-organization-checkbox").addEventListener('click', actions.includeOrganizationCheckbox)
 })
