@@ -4,7 +4,7 @@
 */
 .add-repo{
    margin: 0 auto;
-   height: 110%;
+   height: 130%;
 }
 .add-repo > main {
   padding: var(--standard-padding);

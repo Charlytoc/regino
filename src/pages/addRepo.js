@@ -82,15 +82,15 @@ let html = () => {
     return `<div class="add-repo">
     <header class="header train-header"><a href="templates.html">Get help from Rigo</a><a>Teach Rigo</a></header>
     <main>
+    <div>
+        <svg width="12" height="12" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M14 9L4 18L14 27" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M26 9L16 18L26 27" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="error">${error}</div>
+        <a class="backwards right lighter" href="train.html">Back</a>
+    </div>
         <h2>Code reviews</h2>
-        <div>
-            <svg width="12" height="12" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M14 9L4 18L14 27" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M26 9L16 18L26 27" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <div class="error">${error}</div>
-            <a class="backwards right lighter" href="train.html">Back</a>
-        </div>
         <p>As team expert, you can provide feedback on code and Rigo will become a better coder.</p>
         <h3>Submit a repo for code reviews</h3>
         <input  id="repo-url" placeholder="Repository url" type="text" />

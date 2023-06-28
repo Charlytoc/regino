@@ -40,8 +40,10 @@ let html = () => {
     }
     const isSelected = (id) => id == selectedOrganization ? 'selected' : 'null'
 
-
-    return `<div class="organizations">
+    let _html;
+    
+    try {
+    _html = `<div class="organizations">
         <div>
         <h1>Hi, ${name}</h1>
         <p>Please choose an organization</p>
@@ -52,10 +54,20 @@ let html = () => {
         <button id="choose-organization" >Choose</button>
         </div>
     </div>`;
+    } catch (error) {
+    // Handle the error here
+    console.error(error);
+    // Optionally, you can assign a fallback value to _html in case of an error
+    _html = '<p>An error occurred while generating the HTML.</p><button id="logout-button">Logout</button></div>';
+    return actions.logout();
+    }
+
+    return _html;
 }
 
 document.addEventListener("render", ()=>{
     document.querySelector("#organizations-select").addEventListener('change', actions.handleOrganizationChange)
-    document.querySelector("#choose-organization").addEventListener('click', actions.chooseOrgnization)
+    document.querySelector("#choose-organization").addEventListener('click', actions.chooseOrgnization);
+    document.querySelector("#logout-button").addEventListener('click', actions.logout);
 
 })
