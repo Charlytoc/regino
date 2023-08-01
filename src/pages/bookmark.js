@@ -20,9 +20,20 @@ let html = () => {
     const name = localStorage.getItem('name');
     const organizationName = localStorage.getItem('organizationName');
     const websiteObject = {
-        purposes: []
+        purposes: [],
+        link: '',
+        url: ''
     }
     
+    async function getCurrentTab() {
+      let queryOptions = { active: true, currentWindow: true};
+      // `tab` will either be a `tabs.Tab` instance or `undefined`.
+      let [tab] = await chrome.tabs.query(queryOptions);
+      websiteObject.url = tab.url
+      console.log(tab.url);
+      return '';
+    } 
+    getCurrentTab()
 
 
     actions.handleName = (e) => {
@@ -43,7 +54,15 @@ let html = () => {
         console.log(websiteObject);
       };
     if (!fetched) {
-        fetch(`${API_URL}/v1/finetuning/get/purposes/?token=${token}`)
+
+        const url = `${API_URL}/v1/finetuning/purposes?expertise=true`
+        const config = {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Token ' +token
+          }
+        }
+        fetch(`${url}`, config)
         .then(resp => resp.json())
         .then(data => {
             setPurposes(data, renderize=false);setFetched(true)})

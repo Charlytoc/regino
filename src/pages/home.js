@@ -10,10 +10,14 @@ let html = () => {
     if (token && name) {
         window.location.href = 'organizations.html'
     }
-    actions.handlePasswordChange = (e) => {
-        loginObject.password = e.target.value
 
+    actions.handlePasswordChange = (e) => {
+        loginObject.password = e.target.value;
+        if (e.keyCode === 13) { 
+            actions.login(); 
+        }
     }
+
     const loginObject = {}
 
     actions.forgotPassword = () => {
@@ -84,7 +88,7 @@ let html = () => {
 
 document.addEventListener("render", ()=>{
     document.querySelector("#email-input").addEventListener('keyup', actions.handleEmailChange);
-    document.querySelector("#password-input").addEventListener('change', actions.handlePasswordChange);
+    document.querySelector("#password-input").addEventListener('keyup', actions.handlePasswordChange);
     document.querySelector("#login-button").addEventListener('click', actions.login);
     document.querySelector("#forgot-password").addEventListener('click', actions.forgotPassword);
 

@@ -11,8 +11,10 @@ let html = () => {
     const [template, setTemplate] = useState([])
 
     let includeOrganizationBrief = false
+    let includePurposeBrief = false
+
     if (!fetched) {
-        const request_url = API_URL+'/v1/prompting/templates/'+template_id
+        const request_url = `${API_URL}/v1/prompting/templates/${template_id}`
         fetch(request_url, {
             method: 'GET',
             headers: {
@@ -29,7 +31,11 @@ let html = () => {
 
     actions.includeOrganizationCheckbox = (e) => {
       includeOrganizationBrief =  includeOrganizationBrief ? false : true;
-      console.log(includeOrganizationBrief);
+      // console.log(includeOrganizationBrief);
+    }
+    actions.includePurposeCheckbox = (e) => {
+      includePurposeBrief =  includePurposeBrief ? false : true;
+      // console.log(includeOrganizationBrief);
     }
 
 
@@ -43,7 +49,7 @@ let html = () => {
         buttonThinking.innerHTML = "Rigo is thinking..."
         buttonThinking.disabled = true;
         buttonThinking.classList.add('rigo-thinking');
-        fetch(`${API_URL}/v1/prompting/completion/${template_id}`, {
+        fetch(`${API_URL}/v1/prompting/completion/${template_id}/`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -51,7 +57,8 @@ let html = () => {
             },
             body: JSON.stringify({
                 inputs: inputsObject,
-                include_organization_brief: includeOrganizationBrief
+                include_organization_brief: includeOrganizationBrief,
+                include_purpose_objective: includePurposeBrief
             })
           })
           .then(response => response.json())
@@ -90,6 +97,8 @@ let html = () => {
         <div class="checkbox-container">
         <input id="include-organization-checkbox" = name="include-organization" type="checkbox" />
         <span class="small">Include organization brief</span>
+        <input id="include-purpose-checkbox" = name="include-purpose" type="checkbox" />
+        <span class="small">Include purpose brief</span>
         </div>
         <button id="generate-button">Generate</button>
         <div class="modal-copied">Answer copied to clipboard!</div>
@@ -120,4 +129,5 @@ document.addEventListener("render", ()=>{
     document.querySelector("#switch-organization").addEventListener('click', actions.switchToOrganization)
     document.querySelector("#logout-button").addEventListener('click', actions.logout)
     document.querySelector("#include-organization-checkbox").addEventListener('click', actions.includeOrganizationCheckbox)
+    document.querySelector("#include-purpose-checkbox").addEventListener('click', actions.includePurposeCheckbox)
 })

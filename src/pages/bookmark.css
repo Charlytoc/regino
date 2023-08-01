@@ -4,7 +4,7 @@
 */
 .bookmark{
    margin: 0 auto;
-   height: 100%;
+   height: fit-content;
 }
 .bookmark > main {
   padding: var(--standard-padding);
