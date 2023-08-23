@@ -105,6 +105,9 @@ let html = () => {
         const topic =  e.currentTarget.getAttribute('data-topic')
         chrome.tabs.create({url: `${API_URL}/view/answer/completion?token=${token}&purpose=${topic}`});
     }
+
+    
+    
     
     
     return `<div class="train">
@@ -127,4 +130,5 @@ document.addEventListener("render", ()=>{
     document.querySelector("#logout-button").addEventListener('click', ()=>{
         actions.logout()
     })
+   
 })

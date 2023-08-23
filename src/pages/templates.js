@@ -61,7 +61,7 @@ let html = () => {
           .catch(error => {
             // Handle error here
             console.error(error);
-            actions.logout(); // Call actions.logout() function if an error occurs
+            actions.logout();
           });
     }
 
