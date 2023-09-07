@@ -6,30 +6,30 @@
     height: 80%;
  }
  .topics > main > *:not(:first-child){
-    margin-top: 10px;
+    /* margin-top: 5px; */
     width: 100%;
-    padding: 12px;
+    padding-top: 11px;
+    padding-bottom: 11px;
  }
  .topics > main > h1 {
-    margin-top: 15px;
+    margin-top: 10px;
     font-size: 15px;
  }
  .topics > main > select, option {
     font-size: 12px;
+    margin-top: 5px;
  }
- .topics > main > button {
-    background-color: var(--color-one);
-    border-radius: 3px;
-    border: 0;
-    color: white;
- }
+
  .help-option {
    background-color: #dcd6d6;
    display: flex;
    align-items: center;
+   border: 0;
    text-decoration: none;
    font-size: 18px;
-   font-weight: 600;
+   font-weight: 500;
+   padding-left: 11px;
+   padding-right: 11px;
    color: black;
    gap: 10px;
    border-radius: 5px;
@@ -37,4 +37,9 @@
  }
  .help-option:hover {
    opacity: 1;
+   background-color: var(--color-one-opaque);
+ }
+
+ #help-options {
+   display: none;
  }

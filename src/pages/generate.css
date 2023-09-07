@@ -10,7 +10,6 @@
  .generate > main > *:not(:first-child, h2, .small){
     margin-top: 0px;
     width: 100%;
-    padding: 10px;
  }
  .generate > main > a {
     color: rgb(0, 0, 0);
@@ -49,6 +48,7 @@
    animation: thinking 1s linear infinite;
 
 }
+
 @keyframes thinking {
    0%{
       opacity: 1;

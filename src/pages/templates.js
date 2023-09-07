@@ -14,7 +14,7 @@ let html = () => {
     const current_organization = () => organization == null ? DEFAULT_ORGANIZATION : organization
     const currentOrganizationName = () => organizationName == null ? DEFAULT_ORGANIZATION_NAME : organizationName
 
-  
+    redirectToLastPage()
 
     const filterSessionStorageTemplates = () => {
       let storedData = sessionStorage.getItem('TEMPLATES');

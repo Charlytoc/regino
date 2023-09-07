@@ -9,10 +9,10 @@ let html = () => {
     const pendingCompletions = localStorage.getItem('pendingCompletions')
     const [fetched, setFetched] = useState(false)
     const [template, setTemplate] = useState([])
-
+    const formId = `form_${template_id}`
     let includeOrganizationBrief = false
     let includePurposeBrief = false
-
+    saveLastPage('generate.html')
     if (!fetched) {
         const request_url = `${API_URL}/v1/prompting/templates/${template_id}`
         fetch(request_url, {
@@ -42,13 +42,18 @@ let html = () => {
     actions.goToTemplates = (e) => {
         e.preventDefault();
         localStorage.removeItem('template');
-        window.location.href = "templates.html"
+        redirectAndCleanCache('templates.html')
     }
     actions.generate = (e) => {
         const buttonThinking = e.target
         buttonThinking.innerHTML = "Rigo is thinking..."
         buttonThinking.disabled = true;
         buttonThinking.classList.add('rigo-thinking');
+
+        for (let _key in inputsObject) {
+          storeValue('cache', _key, '')
+        }
+
         fetch(`${API_URL}/v1/prompting/completion/${template_id}/`, {
             method: 'POST',
             headers: {
@@ -70,18 +75,26 @@ let html = () => {
     const inputsObject = {}
     actions.handleInput = (e) => {
         inputsObject[e.target.name] = e.target.value
+        storeValue(`cache_${formId}`, e.target.name, e.target.value)
     }
     const returnInputs = (obj) => {
-        let inputs = ""
+        
+        let inputs =`<form id="${formId}">`
         for (let variable in obj) {
             let description = variable.replace(/_/g, " ");
             description = description.charAt(0).toUpperCase() + description.slice(1)
-            inputs += `<input class="variable-input" name="${variable}" type="text" placeholder="${description}"/>
+            console.log(variable);
+
+            const inputValue = String(retrieveValue(`cache_${formId}`, variable))
+            inputs += `<input value="${inputValue}" class="variable-input" name="${variable}" type="text" placeholder="${description}"/>
             <span class="small">${obj[variable]}</span>
             `
         }
+        inputs += `</form>`
         return inputs
     }
+
+
 
      return `<div class="generate">
         <header class="header"><a>Get help from Rigo</a><a href="train.html">Teach Rigo <span class="completions-toggle">${pendingCompletions}</span></a></header>
@@ -126,8 +139,10 @@ document.addEventListener("render", ()=>{
     document.querySelector("#generate-button").addEventListener('click', actions.generate)
     const variableInputs = document.querySelectorAll(".variable-input")
     variableInputs.forEach((input) => input.addEventListener('keyup', actions.handleInput))
+
     document.querySelector("#switch-organization").addEventListener('click', actions.switchToOrganization)
     document.querySelector("#logout-button").addEventListener('click', actions.logout)
     document.querySelector("#include-organization-checkbox").addEventListener('click', actions.includeOrganizationCheckbox)
     document.querySelector("#include-purpose-checkbox").addEventListener('click', actions.includePurposeCheckbox)
+    // logInputValues(["include-organization-checkbox"])
 })

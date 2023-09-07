@@ -2,6 +2,7 @@
     --color-one: #2F80ED;
     --standard-padding: 10px;
     --color-one-opaque: #2f81ed29;
+    --color-gray-light: #E0E0E0;
 }
 * {
     margin: 0;
@@ -225,3 +226,58 @@ a.backwards.lighter {
 
 }
 
+
+
+.button-panel {
+    margin-top: 3px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    > button {
+        padding: 10px;
+        border-radius: 5px;
+        border: 0;
+    }
+    > button:hover {
+        background-color: var(--color-one-opaque);
+    }
+}
+
+form {
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex;
+    gap: 0 !important;
+    flex-direction: column;
+}
+input {
+    width: 100%;
+    border-radius: 5px;
+    padding: 8px;
+    border: 1px solid rgba(209, 209, 209, 0.815);
+    margin: 0px !important;
+}
+
+.button {
+        padding: 10px;
+        border-radius: 5px;
+        border: 0;
+    
+   
+}
+
+.button:hover {
+    background-color: var(--color-one-opaque);
+}
+
+.w-100 {
+    width: 100%;
+}
+.pos-relative {
+    position: relative;
+}
+
+.container-flex-column {
+    display: flex;
+    flex-direction: column;
+}
