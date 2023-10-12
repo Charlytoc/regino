@@ -51,7 +51,7 @@ let html = () => {
     const prefillUrl = async () => {
       const tabUrl = await getCurrentTab()
       console.log(tabUrl);
-      websiteObject.link = tabUrl
+      websiteObject.url = tabUrl
       setCurrentURL(tabUrl, renderize=false)
     }
     
@@ -71,7 +71,6 @@ let html = () => {
         } else {
           websiteObject.purposes.splice(index, 1);
         }
-        console.log(websiteObject);
         
       };
     if (!fetched) {
@@ -89,11 +88,14 @@ let html = () => {
             setPurposes(data, renderize=false);setFetched(true)})
     }
 
-    actions.login = (e) => {
+    actions.bookmark = (e) => {
       const buttonThinking = e.target
         buttonThinking.innerHTML = "Rigo is working..."
         buttonThinking.disabled = true;
-
+        websiteObject.link = currentURL
+        websiteObject.url = currentURL
+        
+        console.log(websiteObject);
         fetch(`${API_URL}/v1/finetuning/bookmark/website/?token=${token}`, {
             method: 'POST',
             headers: {
@@ -171,7 +173,7 @@ let html = () => {
     <button id="display-dropdown" class="button-svg">Select the purposes ${downArrowSVG()}</button>
     ${purposesMenu(purposes, selectedPurposes)}
     </div>
-    <button id="login-button">Bookmark website</button>
+    <button id="bookmark-button">Bookmark website</button>
     
     <div class="error">${error}</div>
 
@@ -194,7 +196,7 @@ document.addEventListener("render", ()=>{
     document.querySelector("#website-name").addEventListener('keyup', actions.handleName);
     document.querySelector("#website-link").addEventListener('change', actions.handleLink);
     // document.querySelector("#second-password-input").addEventListener('change', actions.handleSecondPasswordChange);
-    document.querySelector("#login-button").addEventListener('click', actions.login);
+    document.querySelector("#bookmark-button").addEventListener('click', actions.bookmark);
     document.querySelector("#display-dropdown").addEventListener('click', actions.displayDropdown);
 
 }) 
