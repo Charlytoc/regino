@@ -1,4 +1,9 @@
 // Must be called html
+
+let svgOptions = () => `<svg width="8" height="9" viewBox="0 0 8 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.00324 0.5H0.996775C0.720783 0.5 0.581518 0.904156 0.777074 1.14017L3.17141 4.03033V7.25C3.17141 7.37236 3.22088 7.48703 3.30394 7.55722L4.33966 8.4319C4.54399 8.60453 4.82855 8.42958 4.82855 8.12468V4.03033L7.22296 1.14017C7.41811 0.904625 7.27981 0.5 7.00324 0.5Z" fill="black"/>
+</svg>`
+
 let html = () => {
     const token = localStorage.getItem('token');
     const name = localStorage.getItem('name')
@@ -87,10 +92,8 @@ let html = () => {
       <header class="header"><a>Get help from Rigo</a><a href="train.html">Teach Rigo<span class="completions-toggle">${pendingCompletions}</span> </a></header>
       <main>
       <a class="backwards left" id="go-to-topics">
-      <svg width="8" height="9" viewBox="0 0 8 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M7.00324 0.5H0.996775C0.720783 0.5 0.581518 0.904156 0.777074 1.14017L3.17141 4.03033V7.25C3.17141 7.37236 3.22088 7.48703 3.30394 7.55722L4.33966 8.4319C4.54399 8.60453 4.82855 8.42958 4.82855 8.12468V4.03033L7.22296 1.14017C7.41811 0.904625 7.27981 0.5 7.00324 0.5Z" fill="black"/>
-      </svg>
-      Filter help options</a>
+      ${svgOptions()}
+      Switch purpose</a>
 
 
       ${templates.map((item) => `

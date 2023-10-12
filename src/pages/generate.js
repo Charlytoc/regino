@@ -1,18 +1,22 @@
 // Must be called html
 let html = () => {
-    const token = localStorage.getItem('token');
-    const name = localStorage.getItem('name')
-    const organization = localStorage.getItem('organization')
-    const organizationName = localStorage.getItem('organizationName')
-    const topic = localStorage.getItem('topic')
-    const template_id = localStorage.getItem('TEMPLATE')
-    const pendingCompletions = localStorage.getItem('pendingCompletions')
-    const [fetched, setFetched] = useState(false)
-    const [template, setTemplate] = useState([])
-    const formId = `form_${template_id}`
-    let includeOrganizationBrief = false
-    let includePurposeBrief = false
-    saveLastPage('generate.html')
+  const token = localStorage.getItem('token');
+  const name = localStorage.getItem('name')
+  const organization = localStorage.getItem('organization')
+  const organizationName = localStorage.getItem('organizationName')
+  const topic = localStorage.getItem('topic')
+  const template_id = localStorage.getItem('TEMPLATE')
+  const pendingCompletions = localStorage.getItem('pendingCompletions')
+  const [fetched, setFetched] = useState(false)
+  const [template, setTemplate] = useState([])
+  const formId = `form_${template_id}`
+  let includeOrganizationBrief = false
+  let includePurposeBrief = false
+  const inputsObject = {}
+
+  saveLastPage('generate.html')
+
+  
     if (!fetched) {
         const request_url = `${API_URL}/v1/prompting/templates/${template_id}`
         fetch(request_url, {
@@ -50,10 +54,6 @@ let html = () => {
         buttonThinking.disabled = true;
         buttonThinking.classList.add('rigo-thinking');
 
-        for (let _key in inputsObject) {
-          storeValue('cache', _key, '')
-        }
-
         fetch(`${API_URL}/v1/prompting/completion/${template_id}/`, {
             method: 'POST',
             headers: {
@@ -68,11 +68,14 @@ let html = () => {
           })
           .then(response => response.json())
           .then((data) =>{
+            for (let _key in inputsObject) {
+              storeValue(`cache_${formId}`, _key, '')
+            }
+
             chrome.tabs.create({url: `${API_URL}/view/complete/?completion=${data.id}`});
-            // console.log(data);
+            
           } )
     }
-    const inputsObject = {}
     actions.handleInput = (e) => {
         inputsObject[e.target.name] = e.target.value
         storeValue(`cache_${formId}`, e.target.name, e.target.value)
@@ -86,6 +89,8 @@ let html = () => {
             console.log(variable);
 
             const inputValue = String(retrieveValue(`cache_${formId}`, variable))
+            inputsObject[variable] = inputValue
+
             inputs += `<input value="${inputValue}" class="variable-input" name="${variable}" type="text" placeholder="${description}"/>
             <span class="small">${obj[variable]}</span>
             `

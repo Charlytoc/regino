@@ -3,7 +3,7 @@ let currentRefCount = 0;
 window.actions = {};
 
 const API_URL = 'https://rigobot.herokuapp.com'
-// const API_URL = 'https://8000-charlytoc-rigobot-5stxd4jad0l.ws-us104.gitpod.io'
+// const API_URL = 'https://8000-charlytoc-rigobot-g4nbrxkgf78.ws-us105.gitpod.io'
 
 
 
@@ -93,5 +93,12 @@ function redirectAndCleanCache (redirectTo) {
     storeValue('LAST_PAGE_VISITED', 'page', '')
     window.location.href = redirectTo
 }
+
+async function getCurrentTab() {
+    const tab = await chrome.tabs.query({ active: true, currentWindow: true });
+    return tab[0].url;
+}
+
+
 
 window.onload = render();

@@ -2,7 +2,7 @@
 let html = () => {
     const [fetched, setFetched] = useState(false)
     const [topics, setTopics] = useState([])
-    const [selectedTopic, setSelectedTopic] = useState(0)
+    const [selectedTopic, setSelectedTopic] = useState(-1)
     const token = localStorage.getItem('token');
     const name = localStorage.getItem('name')
     const pendingCompletions = localStorage.getItem('pendingCompletions')
@@ -14,9 +14,9 @@ let html = () => {
     // const SELECTED_PURPOSE = 0
     const DEFAULT_ORGANIZATION_NAME = "4Geeks"
 
-    const current_organization = () => organization == null ? DEFAULT_ORGANIZATION : organization
-    const current_topic = () => topic == null ? DEFAULT_TOPIC : topic
-    const currentOrganizationName = () => organizationName == null ? DEFAULT_ORGANIZATION_NAME : organizationName
+    // const current_organization = () => organization == null ? DEFAULT_ORGANIZATION : organization
+    // const current_topic = () => topic == null ? DEFAULT_TOPIC : topic
+    // const currentOrganizationName = () => organizationName == null ? DEFAULT_ORGANIZATION_NAME : organizationName
 
     if (localStorage.getItem('SELECTED_PURPOSE')) {
         window.location.href = 'templates.html'
@@ -66,9 +66,18 @@ let html = () => {
     }
 
     actions.handleTopicsChange = (e) => {
-        setSelectedTopic(e.target.value);
-        const helpOptionsContainer = document.querySelector("#help-options");
-        helpOptionsContainer.style.display = "block";
+        let topicId = Number(e.target.value)
+
+        if (topicId != 0) {
+            setSelectedTopic(topicId);
+            const helpOptionsContainer = document.querySelector("#help-options");
+            helpOptionsContainer.style.display = "block";
+        }
+        if (topicId == 0 && selectedTopic != 0) {
+            setSelectedTopic(0);
+            const helpOptionsContainer = document.querySelector("#help-options");
+            helpOptionsContainer.style.display = "none";
+        }
     }
 
     actions.goToTemplates = (e) => {
@@ -80,23 +89,17 @@ let html = () => {
     return `<div class="topics">
         <header class="header"><a>Get help from Rigo</a><a href="train.html">Teach rigo<span class="completions-toggle">${pendingCompletions}</span></a></header>
         <main>
-        <a class="backwards" id="go-to-templates">
-        <svg width="12" height="12" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M14 9L4 18L14 27" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M26 9L16 18L26 27" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        back to templates</a>
+     
         <h1>Get help in one particular purpose</h1>
-        <span>Choose your purpose</span>
         <select id="topics-select">
-        <option value=0 ${isSelected(0)}>All organization purposes</option>
+        <option value="0" ${isSelected(0)}>Click to select purpose</option>
         ${topics.map((item) => `<option ${isSelected(item.id)} value=${item.id}>${item.name}</option>`)}
         </select>
 
         <section id="help-options">
             <h4>What type of help do you need?</h4>
             <div class="button-panel">
-            <button id="choose-topic">Generate text</button>
+            <button id="choose-topic">Use a template</button>
             <button id="chat-opener" href="">Start a conversation</button>
             </div>
         </section>
@@ -122,7 +125,7 @@ let html = () => {
 }
 
 document.addEventListener("render", ()=>{
-    document.querySelector("#go-to-templates").addEventListener('click', actions.goToTemplates)
+    // document.querySelector("#go-to-templates").addEventListener('click', actions.goToTemplates)
     document.querySelector("#topics-select").addEventListener('change', actions.handleTopicsChange)
     document.querySelector("#choose-topic").addEventListener('click', actions.chooseTopic);
     document.querySelector("#switch-organization").addEventListener('click', actions.switchToOrganization)

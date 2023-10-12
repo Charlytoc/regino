@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Rigobot GPT",
   "description": "Create your own GPT bot, traing it with your own data and use it to generate text for your organization.",
-  "version": "1.3.1",
+  "version": "1.3.5",
   "action": {
     "default_popup": "home.html",
     "default_icon": "icon.png"

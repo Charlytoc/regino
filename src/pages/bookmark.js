@@ -39,6 +39,7 @@ let html = () => {
     const [error, setError] = useState('Error')
     const [fetched, setFetched] = useState(false)
     const [purposes, setPurposes] = useState([])
+    const [currentURL, setCurrentURL] = useState("")
     const [selectedPurposes, setSelectedPurposes] = useState([])
     const name = localStorage.getItem('name');
     const organizationName = localStorage.getItem('organizationName');
@@ -47,8 +48,14 @@ let html = () => {
         link: '',
         url: ''
     }
+    const prefillUrl = async () => {
+      const tabUrl = await getCurrentTab()
+      console.log(tabUrl);
+      websiteObject.link = tabUrl
+      setCurrentURL(tabUrl, renderize=false)
+    }
+    
 
-    // console.log(selectedPurposes);
     actions.handleName = (e) => {
         websiteObject.name = e.target.value
     }
@@ -68,7 +75,7 @@ let html = () => {
         
       };
     if (!fetched) {
-
+        prefillUrl();
         const url = `${API_URL}/v1/finetuning/purposes?expertise=true`
         const config = {
           headers: {
@@ -83,6 +90,10 @@ let html = () => {
     }
 
     actions.login = (e) => {
+      const buttonThinking = e.target
+        buttonThinking.innerHTML = "Rigo is working..."
+        buttonThinking.disabled = true;
+
         fetch(`${API_URL}/v1/finetuning/bookmark/website/?token=${token}`, {
             method: 'POST',
             headers: {
@@ -155,7 +166,7 @@ let html = () => {
     <h2>Bookmark websites</h2>
     <p>As team expert, you can bookmark websites and Rigo will read and learn from them. As Rigo gets smarter it will be a better companion for your team.</p>
     <input  id="website-name" placeholder="Website name" type="text" />
-    <input  id="website-link" placeholder="Website URL" type="text"/>
+    <input  id="website-link" placeholder="Website URL" value="${currentURL}" type="text"/>
     <div class="w-100 container-flex-column pos-relative">
     <button id="display-dropdown" class="button-svg">Select the purposes ${downArrowSVG()}</button>
     ${purposesMenu(purposes, selectedPurposes)}
