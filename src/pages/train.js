@@ -1,5 +1,5 @@
 // Must be called html
-let headerComponent = `<header class="header train-header"><a href="templates.html">Get help from Rigo</a><a>Teach Rigo</a></header>`
+let headerComponent = `<header class="header train-header"><a href="topics.html">Get help from Rigo</a><a>Teach Rigo</a></header>`
 let footerComponent = (name, organizationName) => `<footer>
 <div>
 <img src="rigo-icon.png"/>

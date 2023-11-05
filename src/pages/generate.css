@@ -61,3 +61,11 @@
       scale: 1;
    }
 }
+
+.checkbox-container {
+   display: grid;
+   /* margin: 0 auto; */
+   width: 160px !important;
+   grid-template-columns: 1fr 20px;
+   align-items: center;
+}

@@ -43,3 +43,7 @@
  #help-options {
    display: none;
  }
+
+ .block {
+   display: block !important;
+ }

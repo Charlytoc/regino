@@ -46,7 +46,8 @@ let html = () => {
     const websiteObject = {
         purposes: [],
         link: '',
-        url: ''
+        url: '',
+        update_interval: 2
     }
     const prefillUrl = async () => {
       const tabUrl = await getCurrentTab()
@@ -61,6 +62,9 @@ let html = () => {
     }
     actions.handleLink = (e) => {
         websiteObject.link = e.target.value
+    }
+    actions.handleInterval = (e) => {
+        websiteObject.update_interval = e.target.value
     }
 
     actions.addOrRemovePurpose = (e) => {
@@ -95,7 +99,7 @@ let html = () => {
         websiteObject.link = currentURL
         websiteObject.url = currentURL
         
-        console.log(websiteObject);
+        // console.log(websiteObject);
         fetch(`${API_URL}/v1/finetuning/bookmark/website/?token=${token}`, {
             method: 'POST',
             headers: {
@@ -115,7 +119,7 @@ let html = () => {
             setError(`Congratulations, you've added a website for finetuning!`);
                 const errorModal = document.querySelector(".error")
                 errorModal.style.animationPlayState = 'running';
-                const websiteViewUrl = API_URL + `/edit/website/${data.id}`
+                const websiteViewUrl = API_URL + `/edit/website/${data.id}?token=${token}`
                 chrome.tabs.create({url: websiteViewUrl});
                         } ).
           catch((error) => {
@@ -167,8 +171,9 @@ let html = () => {
     </div>
     <h2>Bookmark websites</h2>
     <p>As team expert, you can bookmark websites and Rigo will read and learn from them. As Rigo gets smarter it will be a better companion for your team.</p>
-    <input  id="website-name" placeholder="Website name" type="text" />
-    <input  id="website-link" placeholder="Website URL" value="${currentURL}" type="text"/>
+    <input  id="website-name" placeholder="Name" type="text" />
+    <input  id="website-link" placeholder="URL" value="${currentURL}" type="text"/>
+    <input  id="website-update-interval" placeholder="Update every given days" type="number"/>
     <div class="w-100 container-flex-column pos-relative">
     <button id="display-dropdown" class="button-svg">Select the purposes ${downArrowSVG()}</button>
     ${purposesMenu(purposes, selectedPurposes)}
@@ -195,6 +200,7 @@ document.addEventListener("render", ()=>{
     });
     document.querySelector("#website-name").addEventListener('keyup', actions.handleName);
     document.querySelector("#website-link").addEventListener('change', actions.handleLink);
+    document.querySelector("#website-update-interval").addEventListener('change', actions.handleInterval);
     // document.querySelector("#second-password-input").addEventListener('change', actions.handleSecondPasswordChange);
     document.querySelector("#bookmark-button").addEventListener('click', actions.bookmark);
     document.querySelector("#display-dropdown").addEventListener('click', actions.displayDropdown);

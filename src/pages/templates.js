@@ -16,7 +16,7 @@ let html = () => {
     const [templates, setTemplates] = useState(JSON.parse(sessionStorage.getItem('TEMPLATES')) || [])
     const [pendingCompletions, setPendingCompletions] = useState(0)
 
-    const current_organization = () => organization == null ? DEFAULT_ORGANIZATION : organization
+    // const current_organization = () => organization == null ? DEFAULT_ORGANIZATION : organization
     const currentOrganizationName = () => organizationName == null ? DEFAULT_ORGANIZATION_NAME : organizationName
 
     redirectToLastPage()

@@ -113,10 +113,10 @@ let html = () => {
         <h2>${template.name}:</h2>
         ${returnInputs(template.variables)}
         <div class="checkbox-container">
-        <input id="include-organization-checkbox" = name="include-organization" type="checkbox" />
-        <span class="small">Include organization brief</span>
+        <span class="small">Use purpose agent: 
+        </span>
         <input id="include-purpose-checkbox" = name="include-purpose" type="checkbox" />
-        <span class="small">Include purpose brief</span>
+        
         </div>
         <button id="generate-button">Generate</button>
         <div class="modal-copied">Answer copied to clipboard!</div>
@@ -147,7 +147,7 @@ document.addEventListener("render", ()=>{
 
     document.querySelector("#switch-organization").addEventListener('click', actions.switchToOrganization)
     document.querySelector("#logout-button").addEventListener('click', actions.logout)
-    document.querySelector("#include-organization-checkbox").addEventListener('click', actions.includeOrganizationCheckbox)
+    // document.querySelector("#include-organization-checkbox").addEventListener('click', actions.includeOrganizationCheckbox)
     document.querySelector("#include-purpose-checkbox").addEventListener('click', actions.includePurposeCheckbox)
-    // logInputValues(["include-organization-checkbox"])
+
 })

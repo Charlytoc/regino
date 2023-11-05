@@ -24,6 +24,10 @@ button:hover {
     cursor: pointer;
     opacity: 0.9;
 }
+
+a {
+    cursor: pointer;
+}
 .header {
     display: flex;
     background-color: #E0E0E0;
@@ -280,4 +284,7 @@ input {
 .container-flex-column {
     display: flex;
     flex-direction: column;
+}
+.block {
+    display: block;
 }

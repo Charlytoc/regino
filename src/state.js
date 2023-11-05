@@ -3,15 +3,15 @@ let currentRefCount = 0;
 window.actions = {};
 
 // const API_URL = 'https://rigobot.herokuapp.com'
-const API_URL = 'https://8000-charlytoc-rigobot-g4nbrxkgf78.ws-us105.gitpod.io'
+const API_URL = 'https://8000-charlytoc-rigobot-jj5p6gwbpw2.ws-us105.gitpod.io'
 
 
 
 
-const RENDER_EVENT = new Event('render')
+const RENDER_EVENT = new Event('render');
+
 const LOAD_CACHE = new Event('loadCache')
 const render = () => {
-
     document.querySelector('#root').innerHTML = html();
     currentRefCount = 0;
     document.dispatchEvent(RENDER_EVENT);
@@ -24,7 +24,7 @@ const fabricateModifier = (internalIndex) => {
         window.stateValues[internalIndex] = value;
         // console.log("updating value for ref "+internalIndex+" with ", value, window.stateValues )
         if (renderize) {
-            render()
+            render();
         }
         
         

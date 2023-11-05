@@ -5,24 +5,31 @@ let html = () => {
     const [selectedTopic, setSelectedTopic] = useState(-1)
     const token = localStorage.getItem('token');
     const name = localStorage.getItem('name')
-    const pendingCompletions = localStorage.getItem('pendingCompletions')
-    const organization = localStorage.getItem('organization')
+    let pendingCompletions = localStorage.getItem('pendingCompletions');
+
+
+    redirectToLastPage()
+    if (!pendingCompletions) {
+        fetch(API_URL+`/v1/finetuning/completions/list/?token=${token}&total=True`)
+        .then(response => response.json())
+        .then(data => {
+            localStorage.setItem('pendingCompletions', data);
+            pendingCompletions = data;
+          })
+    }
+
     const organizationName = localStorage.getItem('organizationName')
     const [error, setError] = useState('Error')
 
-    const DEFAULT_ORGANIZATION = 1
-    // const SELECTED_PURPOSE = 0
-    const DEFAULT_ORGANIZATION_NAME = "4Geeks"
-
-    // const current_organization = () => organization == null ? DEFAULT_ORGANIZATION : organization
-    // const current_topic = () => topic == null ? DEFAULT_TOPIC : topic
-    // const currentOrganizationName = () => organizationName == null ? DEFAULT_ORGANIZATION_NAME : organizationName
-
-    if (localStorage.getItem('SELECTED_PURPOSE')) {
-        window.location.href = 'templates.html'
-    }
+    
     
     if (!fetched) {
+
+        if (localStorage.getItem('SELECTED_PURPOSE')) {
+            setSelectedTopic(localStorage.getItem('SELECTED_PURPOSE'), renderize=false)
+            // window.location.href = 'templates.html'
+        }
+
         fetch(API_URL+'/v1/finetuning/purposes/', {
             method: 'GET',
             headers: {
@@ -85,6 +92,10 @@ let html = () => {
         localStorage.removeItem('template');
         window.location.href = "templates.html"
     }
+    let helpOptionsClass = ""
+    if (selectedTopic != 0 && selectedTopic != -1) {
+        helpOptionsClass="block";
+    }
 
     return `<div class="topics">
         <header class="header"><a>Get help from Rigo</a><a href="train.html">Teach rigo<span class="completions-toggle">${pendingCompletions}</span></a></header>
@@ -96,7 +107,7 @@ let html = () => {
         ${topics.map((item) => `<option ${isSelected(item.id)} value=${item.id}>${item.name}</option>`)}
         </select>
 
-        <section id="help-options">
+        <section id="help-options" class="${helpOptionsClass}">
             <h4>What type of help do you need?</h4>
             <div class="button-panel">
             <button id="choose-topic">Use a template</button>

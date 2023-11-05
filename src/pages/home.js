@@ -48,7 +48,7 @@ let html = () => {
             localStorage.setItem('token', data.token)
             localStorage.setItem('organization', data.organization.id)
             localStorage.setItem('organizationName', data.organization.name)
-            window.location.href = 'templates.html'
+            window.location.href = 'topics.html'
           } ).
           catch((error) => {
             if (error.message.startsWith('401')) {
