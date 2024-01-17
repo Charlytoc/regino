@@ -69,7 +69,7 @@ let html = () => {
          return
         }
         
-        chrome.tabs.create({url: `${API_URL}/chat?token=${token}&purpose=${selectedTopic}`});
+        chrome.tabs.create({url: `${CHAT_URL}?token=${token}&purpose=${selectedTopic}`});
     }
 
     actions.handleTopicsChange = (e) => {

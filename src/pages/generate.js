@@ -2,9 +2,9 @@
 let html = () => {
   const token = localStorage.getItem('token');
   const name = localStorage.getItem('name')
-  const organization = localStorage.getItem('organization')
+  // const organization = localStorage.getItem('organization')
   const organizationName = localStorage.getItem('organizationName')
-  const topic = localStorage.getItem('topic')
+  const purpose_id = localStorage.getItem('SELECTED_PURPOSE')
   const template_id = localStorage.getItem('TEMPLATE')
   const pendingCompletions = localStorage.getItem('pendingCompletions')
   const [fetched, setFetched] = useState(false)
@@ -16,92 +16,106 @@ let html = () => {
 
   saveLastPage('generate.html')
 
+
+  if (!fetched) {
+    const request_url = `${API_URL}/v1/prompting/templates/${template_id}`
+    fetch(request_url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Token ' + token
+      }
+    })
+      .then(response => response.json())
+      .then((data) => {
+        setTemplate(data, renderize = false);
+        setFetched(true);
+      })
+  }
+
+  actions.includePurposeCheckbox = (e) => {
+    includePurposeBrief = includePurposeBrief ? false : true;
+  }
+
+
+  actions.goToTemplates = (e) => {
+    e.preventDefault();
+    localStorage.removeItem('template');
+    redirectAndCleanCache('templates.html')
+  }
+
+
+  actions.generateWithPurpose = (e) => {
+    includePurposeBrief = true;
+    actions.generate(e);
+  }
+
+
+
+  actions.generate = (e) => {
+    const buttonThinking = e.target
+    buttonThinking.innerHTML = "Rigo is thinking..."
+    buttonThinking.disabled = true;
+    buttonThinking.classList.add('rigo-thinking');
+
+    fetch(`${API_URL}/v1/prompting/completion/${template_id}/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Token ' + token,
+      },
+      body: JSON.stringify({
+        inputs: inputsObject,
+        include_purpose_objective: includePurposeBrief,
+        just_format: true
+      })
+    })
+      .then(response => response.json())
+      .then((data) => {
+        for (let _key in inputsObject) {
+          storeValue(`cache_${formId}`, _key, '')
+        }
+
+
+        chrome.tabs.create({ url: `${CHAT_URL}?token=${token}&purpose=${purpose_id}&completion=${data.id}&action=generate`});
+
+        // chrome.tabs.create({ url: `${API_URL}/view/complete/?completion=${data.id}` });
+
+      })
+  }
+  actions.handleInput = (e) => {
+    inputsObject[e.target.name] = e.target.value
+    storeValue(`cache_${formId}`, e.target.name, e.target.value)
+  }
   
-    if (!fetched) {
-        const request_url = `${API_URL}/v1/prompting/templates/${template_id}`
-        fetch(request_url, {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': 'Token '+token
-            }
-          })
-          .then(response => response.json())
-          .then((data) =>{
-            setTemplate(data, renderize=false);
-            setFetched(true);
-          } )
-    }
+  actions.showGenerateOptions = () => {
+    document.querySelector("#buttons-container").style.display = "flex";
 
-    actions.includeOrganizationCheckbox = (e) => {
-      includeOrganizationBrief =  includeOrganizationBrief ? false : true;
-      // console.log(includeOrganizationBrief);
-    }
-    actions.includePurposeCheckbox = (e) => {
-      includePurposeBrief =  includePurposeBrief ? false : true;
-      // console.log(includeOrganizationBrief);
-    }
+    document.querySelector(".generate-button").style.display = "none";
+  }
 
+  const returnInputs = (obj) => {
 
-    actions.goToTemplates = (e) => {
-        e.preventDefault();
-        localStorage.removeItem('template');
-        redirectAndCleanCache('templates.html')
-    }
-    actions.generate = (e) => {
-        const buttonThinking = e.target
-        buttonThinking.innerHTML = "Rigo is thinking..."
-        buttonThinking.disabled = true;
-        buttonThinking.classList.add('rigo-thinking');
+    let inputs = `<form id="${formId}">`
+    for (let variable in obj) {
+      let description = variable.replace(/_/g, " ");
+      description = description.charAt(0).toUpperCase() + description.slice(1)
+      console.log(variable);
 
-        fetch(`${API_URL}/v1/prompting/completion/${template_id}/`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': 'Token '+token,
-            },
-            body: JSON.stringify({
-                inputs: inputsObject,
-                include_organization_brief: includeOrganizationBrief,
-                include_purpose_objective: includePurposeBrief
-            })
-          })
-          .then(response => response.json())
-          .then((data) =>{
-            for (let _key in inputsObject) {
-              storeValue(`cache_${formId}`, _key, '')
-            }
+      const inputValue = String(retrieveValue(`cache_${formId}`, variable))
+      inputsObject[variable] = inputValue
 
-            chrome.tabs.create({url: `${API_URL}/view/complete/?completion=${data.id}`});
-            
-          } )
-    }
-    actions.handleInput = (e) => {
-        inputsObject[e.target.name] = e.target.value
-        storeValue(`cache_${formId}`, e.target.name, e.target.value)
-    }
-    const returnInputs = (obj) => {
-        
-        let inputs =`<form id="${formId}">`
-        for (let variable in obj) {
-            let description = variable.replace(/_/g, " ");
-            description = description.charAt(0).toUpperCase() + description.slice(1)
-            console.log(variable);
-
-            const inputValue = String(retrieveValue(`cache_${formId}`, variable))
-            inputsObject[variable] = inputValue
-
-            inputs += `<input value="${inputValue}" class="variable-input" name="${variable}" type="text" placeholder="${description}"/>
+      inputs += `<input value="${inputValue}" class="variable-input" name="${variable}" type="text" placeholder="${description}"/>
             <span class="small">${obj[variable]}</span>
             `
-        }
-        inputs += `</form>`
-        return inputs
     }
+    inputs += `</form>`
+    return inputs
+  }
 
 
 
-     return `<div class="generate">
+  return `<div class="generate">
         <header class="header"><a>Get help from Rigo</a><a href="train.html">Teach Rigo <span class="completions-toggle">${pendingCompletions}</span></a></header>
         <main>
         <a class="backwards" id="go-to-templates">
@@ -112,13 +126,19 @@ let html = () => {
         Ask for help in something else</a>
         <h2>${template.name}:</h2>
         ${returnInputs(template.variables)}
-        <div class="checkbox-container">
-        <span class="small">Use purpose agent: 
-        </span>
-        <input id="include-purpose-checkbox" = name="include-purpose" type="checkbox" />
-        
+
+        <div class="generate-button">
+          <button >
+            Generate
+          </button >
         </div>
-        <button id="generate-button">Generate</button>
+        
+        
+        <div id="buttons-container">
+          <button id="generate-with-purpose">Generate with Rigo</button>
+          <button id="generate-with-engine">Generate with GPT-4</button>
+        </div>
+  
         <div class="modal-copied">Answer copied to clipboard!</div>
         </main>
 
@@ -139,15 +159,16 @@ let html = () => {
     </div>`;
 }
 
-document.addEventListener("render", ()=>{
-    document.querySelector("#go-to-templates").addEventListener('click', actions.goToTemplates)
-    document.querySelector("#generate-button").addEventListener('click', actions.generate)
-    const variableInputs = document.querySelectorAll(".variable-input")
-    variableInputs.forEach((input) => input.addEventListener('keyup', actions.handleInput))
+document.addEventListener("render", () => {
+  document.querySelector("#go-to-templates").addEventListener('click', actions.goToTemplates)
+  document.querySelector("#generate-with-purpose").addEventListener('click', actions.generateWithPurpose)
+  document.querySelector("#generate-with-engine").addEventListener('click', actions.generate)
+  const variableInputs = document.querySelectorAll(".variable-input")
+  variableInputs.forEach((input) => input.addEventListener('keyup', actions.handleInput))
 
-    document.querySelector("#switch-organization").addEventListener('click', actions.switchToOrganization)
-    document.querySelector("#logout-button").addEventListener('click', actions.logout)
-    // document.querySelector("#include-organization-checkbox").addEventListener('click', actions.includeOrganizationCheckbox)
-    document.querySelector("#include-purpose-checkbox").addEventListener('click', actions.includePurposeCheckbox)
+  document.querySelector("#switch-organization").addEventListener('click', actions.switchToOrganization)
+  document.querySelector("#logout-button").addEventListener('click', actions.logout)
+  document.querySelector(".generate-button > button").addEventListener('click', actions.showGenerateOptions)
+  document.querySelector("#include-purpose-checkbox").addEventListener('click', actions.includePurposeCheckbox)
 
 })

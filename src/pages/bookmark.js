@@ -46,13 +46,12 @@ let html = () => {
     const websiteObject = {
         purposes: [],
         link: '',
-        url: '',
         update_interval: 2
     }
     const prefillUrl = async () => {
       const tabUrl = await getCurrentTab()
-      console.log(tabUrl);
-      websiteObject.url = tabUrl
+      // console.log(tabUrl);
+      websiteObject.link = tabUrl
       setCurrentURL(tabUrl, renderize=false)
     }
     
@@ -61,7 +60,8 @@ let html = () => {
         websiteObject.name = e.target.value
     }
     actions.handleLink = (e) => {
-        websiteObject.link = e.target.value
+        websiteObject.link = e.target.value;
+        // setCurrentURL(e.target.value, renderize=false)
     }
     actions.handleInterval = (e) => {
         websiteObject.update_interval = e.target.value
@@ -89,15 +89,16 @@ let html = () => {
         fetch(`${url}`, config)
         .then(resp => resp.json())
         .then(data => {
-            setPurposes(data, renderize=false);setFetched(true)})
+            setPurposes(data, renderize=false);
+            setFetched(true)})
     }
 
     actions.bookmark = (e) => {
       const buttonThinking = e.target
         buttonThinking.innerHTML = "Rigo is working..."
         buttonThinking.disabled = true;
-        websiteObject.link = currentURL
-        websiteObject.url = currentURL
+        websiteObject.link = websiteObject.link ? websiteObject.link : currentURL;
+        
         
         // console.log(websiteObject);
         fetch(`${API_URL}/v1/finetuning/bookmark/website/?token=${token}`, {

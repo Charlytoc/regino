@@ -2,9 +2,10 @@ window.stateValues = []
 let currentRefCount = 0;
 window.actions = {};
 
-// const API_URL = 'https://rigobot.herokuapp.com'
-const API_URL = 'https://8000-charlytoc-rigobot-jj5p6gwbpw2.ws-us105.gitpod.io'
-
+const API_URL = 'https://rigobot.herokuapp.com'
+// const API_URL = 'https://8000-charlytoc-rigobot-6vb6c57nhjo.ws-us107.gitpod.io'
+const CHAT_URL = 'https://chat.4geeks.com'
+// const CHAT_URL = 'http://localhost:8000'
 
 
 

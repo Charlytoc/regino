@@ -69,3 +69,57 @@
    grid-template-columns: 1fr 20px;
    align-items: center;
 }
+
+#generate-button {
+   margin-top: 20px;
+   cursor: pointer;
+   text-align: center;
+   background-color: gray;
+   color: white;
+   position: relative;
+   z-index: 1;
+}
+
+.generate-button {
+   display: flex;
+   flex-direction: column;
+   padding: 2px;
+   >button {
+      width: 100%;
+      padding: 8px;
+      border-radius: 8px;
+      background-color: var(--color-one);
+      border: 0;
+      color: white;
+   }
+}
+
+
+#buttons-container {
+   display: flex;
+   display: none;
+   /* position: absolute; */
+   flex-direction: column;
+   width: 100%;
+   /* top: 100%;
+   left: 0%; */
+   background-color: white;
+   border: 1px solid rgb(225, 220, 220);
+   border-radius: 8px ;
+   padding: 2px;
+   z-index: 5;
+   gap: 5px;
+   >button {
+      padding: 7px;
+      border-radius: 8px;
+      border: 0;
+      /* background-color: var(--color-one); */
+      background-color: transparent;
+      color: black;
+      opacity: 0.6;
+   }
+   >button:hover {
+      background-color: rgb(225, 222, 222);
+      opacity: 1;
+   }
+}
